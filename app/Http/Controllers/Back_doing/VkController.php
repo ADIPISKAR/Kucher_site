@@ -77,25 +77,27 @@ class VkController extends Controller
         ],
     ];
 
+    VkProcessingJob::dispatch($access_token, $mess_pass, $messagesArray);
+
     // Устанавливаем флаг обработки в сессии
-    session(['vk_processing' => true]);
-    echo 'Сессия создалась';
-    $client = new Client(['verify' => false]);
+    // session(['vk_processing' => true]);
+    // echo 'Сессия создалась';
+    // $client = new Client(['verify' => false]);
 
-    while (session('vk_processing')) {
-        echo 'Цикл запустился';
-        VkProcessingJob::dispatch($access_token, $mess_pass, $messagesArray);
-        echo 'Процесс идёт';
-        sleep(2);
+    // while (session('vk_processing')) {
+    //     echo 'Цикл запустился';
+    //     VkProcessingJob::dispatch($access_token, $mess_pass, $messagesArray);
+    //     echo 'Процесс идёт';
+    //     sleep(2);
 
-        if (!session('vk_processing')) {
-            break; // Остановка цикла при выполнении условия
-        }
-    }
+    //     if (!session('vk_processing')) {
+    //         break; // Остановка цикла при выполнении условия
+    //     }
+    // }
 
-    // После завершения работы убираем флаг обработки
-    session()->forget('vk_processing');
-    return redirect()->back()->with('message', 'Процесс завершён.');
+    // // После завершения работы убираем флаг обработки
+    // session()->forget('vk_processing');
+    // return redirect()->back()->with('message', 'Процесс завершён.');
 }
 
 

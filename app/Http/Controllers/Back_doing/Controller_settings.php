@@ -11,7 +11,7 @@ class Controller_settings extends Controller
 {
 
     public function index(){
-        return view('Doing\AddList_user');
+        return view('Doing.AddList_user');
     }
 
     public function New_user(Request $request){
@@ -44,7 +44,7 @@ class Controller_settings extends Controller
     }
 
     public function add_message_route(){
-        return view('Doing\AddList_message');
+        return view('Doing.AddList_message');
     }
 
     public function add_message(Request $request){

@@ -20,7 +20,7 @@ class VkApi extends Controller
                 'peer_id' => -91050183, // ID получателя
                 'message' => $message,
                 'random_id' => 0, // Генерация уникального ID для сообщения
-                'access_token' => 'vk1.a.HCFmrya23ZUBDMoLEUbl4ZVvD5aYTHnUfKrReQLxbBSQ8rvcH8IAYAhgIAq4znRN3Hki1IKA2FrNUZ0pEUHdqWXoXE1n55t5d3WrjtgRphX01w4_PcKqH1DAXfwtw0zKv_ZSR1MYEvpM0zcMoQVbqjN8ApeT0PpIIUQNToYuvQrMFVV8re2nOOyGTzdokmrlhpjFc8QJzILC2-_gdRZFfg',
+                'access_token' => $access_token,
                 'v' => '5.199', // Версия API
             ],
         ]);
