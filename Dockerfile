@@ -1,6 +1,6 @@
 FROM php:8.3-apache
 
-# Установка зависимостей, таких как расширения PHP и Composer
+# Установка зависимостей
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -13,24 +13,25 @@ RUN apt-get update && apt-get install -y \
 # Установка Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Копирование файлов Laravel в рабочую директорию контейнера
+# Копирование файлов Laravel
 COPY . /var/www/html
 
 # Установка прав доступа
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Запуск Composer для установки зависимостей
+# Установка зависимостей Laravel
 WORKDIR /var/www/html
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Включение модуля rewrite
-RUN a2enmod rewrite
+# Включение модуля rewrite и перезапуск Apache
+RUN a2enmod rewrite && service apache2 restart
 
 # Копирование конфигурации Apache
 COPY .docker/apache/laravel.conf /etc/apache2/sites-available/000-default.conf
 
-# Порт для доступа к веб-приложению
+# Порт для доступа к приложению
 EXPOSE 80
 
+# Запуск Apache
 CMD ["apache2-foreground"]
