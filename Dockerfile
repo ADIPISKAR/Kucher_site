@@ -24,8 +24,8 @@ RUN chown -R www-data:www-data /var/www/html \
 WORKDIR /var/www/html
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Включение модуля rewrite и перезапуск Apache
-RUN a2enmod rewrite && service apache2 restart
+# Установка ServerName по умолчанию и включение rewrite
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && a2enmod rewrite
 
 # Копирование конфигурации Apache
 COPY .docker/apache/laravel.conf /etc/apache2/sites-available/000-default.conf
