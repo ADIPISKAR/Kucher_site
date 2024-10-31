@@ -1,4 +1,3 @@
-# Установка базового образа PHP с поддержкой Apache
 FROM php:8.3-apache
 
 # Установка зависимостей, таких как расширения PHP и Composer
@@ -6,8 +5,10 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
+    libzip-dev \
+    unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
+    && docker-php-ext-install gd pdo pdo_mysql zip
 
 # Установка Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
