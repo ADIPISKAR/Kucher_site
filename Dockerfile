@@ -24,8 +24,10 @@ RUN chown -R www-data:www-data /var/www/html \
 WORKDIR /var/www/html
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Копирование конфигураций и указание Apache на корневую директорию `public`
+# Включение модуля rewrite
 RUN a2enmod rewrite
+
+# Копирование конфигурации Apache
 COPY .docker/apache/laravel.conf /etc/apache2/sites-available/000-default.conf
 
 # Порт для доступа к веб-приложению
