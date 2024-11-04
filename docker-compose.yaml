@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: laravel_app
     ports:
-      - "9000:80"
+      - "8000:80"
     volumes:
       - .:/var/www/html
       - ./docker/apache/laravel.conf:/etc/apache2/sites-available/000-default.conf
@@ -21,8 +21,8 @@ services:
       - DB_HOST=db
       - DB_PORT=3306
       - DB_DATABASE=laravel
-      - DB_USERNAME=youruser # укажите имя пользователя
-      - DB_PASSWORD=yourpassword # укажите пароль
+      - DB_USERNAME=gen_user # укажите имя пользователя
+      - DB_PASSWORD=:LRc*T<2c,+BRb # укажите пароль
 
   db:
     image: mysql:8.0
@@ -32,8 +32,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: laravel
-      MYSQL_USER: youruser # укажите имя пользователя
-      MYSQL_PASSWORD: yourpassword # укажите пароль
+      MYSQL_USER: gen_user # укажите имя пользователя
+      MYSQL_PASSWORD: :LRc*T<2c,+BRb # укажите пароль
     volumes:
       - db_data:/var/lib/mysql
     networks:
