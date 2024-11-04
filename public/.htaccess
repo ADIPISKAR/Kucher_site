@@ -5,12 +5,8 @@
 
     RewriteEngine On
 
-    # Исключение для favicon и других статических файлов
+    # Исключение для статических файлов, таких как favicon.ico
     RewriteCond %{REQUEST_URI} !\.(?:ico|gif|jpg|jpeg|png|css|js|svg|webp)$ [NC]
-    RewriteCond %{REQUEST_URI} !^/public/
-
-    # Перенаправление запросов в папку public
-    RewriteRule ^(.*)$ public/$1 [L]
 
     # Обработка заголовка авторизации
     RewriteCond %{HTTP:Authorization} .
