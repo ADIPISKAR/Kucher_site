@@ -6,7 +6,9 @@
     RewriteEngine On
 
     # Перенаправление запросов в папку public
+    RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
+
 
     # Обработка заголовка авторизации
     RewriteCond %{HTTP:Authorization} .
