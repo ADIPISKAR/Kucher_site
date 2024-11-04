@@ -5,9 +5,10 @@
 
     RewriteEngine On
 
-    # Проверка, чтобы избежать зацикливания
+    # Исключение для favicon и других статических файлов
+    RewriteCond %{REQUEST_URI} !\.(?:ico|gif|jpg|jpeg|png|css|js|svg|webp)$ [NC]
     RewriteCond %{REQUEST_URI} !^/public/
-    
+
     # Перенаправление запросов в папку public
     RewriteRule ^(.*)$ public/$1 [L]
 
