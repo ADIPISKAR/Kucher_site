@@ -39,7 +39,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && a2enmod rewrite
 COPY .docker/apache/laravel.conf /etc/apache2/sites-available/000-default.conf
 
 # Открытие порта для доступа к приложению
-EXPOSE 9000
+EXPOSE 80
 
 # Запуск Apache
 CMD ["apache2-foreground"]
