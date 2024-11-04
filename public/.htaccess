@@ -5,10 +5,11 @@
 
     RewriteEngine On
 
-    # Перенаправление запросов в папку public
+    # Проверка, чтобы избежать зацикливания
     RewriteCond %{REQUEST_URI} !^/public/
+    
+    # Перенаправление запросов в папку public
     RewriteRule ^(.*)$ public/$1 [L]
-
 
     # Обработка заголовка авторизации
     RewriteCond %{HTTP:Authorization} .
