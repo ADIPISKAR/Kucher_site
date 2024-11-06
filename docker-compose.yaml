@@ -12,7 +12,7 @@ services:
   php:
     build:
       context: dockerfiles
-      dockerfile: php.Dockerfile
+      dockerfile: php
     volumes:
       - ./src:/var/www/laravel
 
@@ -26,6 +26,6 @@ services:
   composer:
     build:
       context: dockerfiles
-      dockerfile: composer.Dockerfile
+      dockerfile: composer
     volumes:
       - ./src:/var/www/laravel
