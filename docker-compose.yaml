@@ -39,6 +39,5 @@ services:
     volumes:
       - ./src:/var/www/laravel
     entrypoint: ["php", "/var/www/laravel/artisan"]
-
 volumes:
   db_data:
