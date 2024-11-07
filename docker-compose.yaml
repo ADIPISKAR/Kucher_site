@@ -1,4 +1,4 @@
-version: "4.34.1"
+version: "4.3"
 
 services:
   nginx:
@@ -11,14 +11,12 @@ services:
     depends_on:
       - mysql
       - php
-
   php:
     build:
       context: dockerfiles
       dockerfile: php.Dockerfile
     volumes:
       - ./src:/var/www/laravel
-
   mysql:
     image: mysql:8.0
     ports:
@@ -26,11 +24,21 @@ services:
     env_file:
       - env/mysql.env
     volumes:
-      - ./src:/var/www/laravel
+      - db_data:/var/lib/mysql
 
   composer:
     build:
       context: dockerfiles
       dockerfile: composer.Dockerfile
     volumes:
+      - db_data:/var/www/laravel
+  artisan:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
       - ./src:/var/www/laravel
+    entrypoint: ["php", "/var/www/laravel/artisan"]
+
+volumes:
+  db_data:
