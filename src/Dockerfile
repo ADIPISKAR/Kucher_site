@@ -35,7 +35,7 @@ RUN cp .env.example .env \
     && php artisan view:cache
 
 # Копирование конфигурации Nginx
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY .docker/nginx/laravel.conf /etc/nginx/conf.d/default.conf
 
 # Настройка Nginx
 RUN rm /etc/nginx/sites-enabled/default
