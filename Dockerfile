@@ -37,11 +37,8 @@ RUN cp .env.example .env \
 # Копирование конфигурации Nginx
 COPY .docker/nginx/laravel.conf /etc/nginx/conf.d/default.conf
 
-# Настройка Nginx
-RUN rm /etc/nginx/sites-enabled/default
-
 # Открытие порта для Nginx
 EXPOSE 80
 
 # Запуск PHP-FPM и Nginx
-CMD service php8.3-fpm start && nginx -g 'daemon off;'
+CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
