@@ -1,7 +1,9 @@
-FROM php:8.3-apache
+# Используем PHP с FPM для работы с Nginx
+FROM php:8.3-fpm
 
 # Установка зависимостей
 RUN apt-get update && apt-get install -y \
+    nginx \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -32,14 +34,14 @@ RUN cp .env.example .env \
     && php artisan route:cache \
     && php artisan view:cache
 
-# Установка ServerName по умолчанию и включение mod_rewrite
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && a2enmod rewrite
+# Копирование конфигурации Nginx
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Копирование конфигурации Apache
-COPY .docker/apache/laravel.conf /etc/apache2/sites-available/000-default.conf
+# Настройка Nginx
+RUN rm /etc/nginx/sites-enabled/default
 
-# Открытие порта для доступа к приложению
+# Открытие порта для Nginx
 EXPOSE 80
 
-# Запуск Apache
-CMD ["apache2-foreground"]
+# Запуск PHP-FPM и Nginx
+CMD service php8.3-fpm start && nginx -g 'daemon off;'
