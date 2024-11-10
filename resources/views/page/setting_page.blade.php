@@ -49,7 +49,7 @@
                 <div class="list-my-group">
                     <p>{{ $message->name_group }}</p>
 
-                    <form action="{{ secure_url('message_destroy', $message->id) }}" method="POST">
+                    <form action="{{secure_url('message_destroy', $message->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
