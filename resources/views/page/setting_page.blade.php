@@ -59,7 +59,7 @@
                 </div>
                 @endforeach
 
-                <form action="{{ secure_url('add_message_route') }}" method="GET">
+                <form action="{{secure_url('add_message_route') }}" method="GET">
                     <button class="btn btn-primary form-button-add">Добавить группу сообщений</button>
                 </form>
             </div>

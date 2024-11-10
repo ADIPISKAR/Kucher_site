@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libzip-dev \
     unzip \
+    nginx \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql zip
 
@@ -34,9 +35,11 @@ RUN cp .env.example .env \
     && php artisan route:cache \
     && php artisan view:cache
 
-# Открываем порт 80 для веб-сервера
+# Копируем файл конфигурации Nginx
+COPY laravel.conf /etc/nginx/nginx.conf
+
+# Открываем порт 80 для Nginx
 EXPOSE 80
 
-# Запуск PHP встроенного сервера
-CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html/public"]
-    
+# Запускаем Nginx и PHP-FPM
+CMD service nginx start && php-fpm
