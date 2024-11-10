@@ -27,7 +27,7 @@
                         <p style="overflow: hidden; width: 450px; text-overflow: ellipsis;">{{ $account->Hash }}</p>
                     </div>
 
-                    <form action="{{ route('destroy_user', $account->id) }}" method="POST">
+                    <form action="{{ secure_url('destroy_user', $account->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
@@ -49,7 +49,7 @@
                 <div class="list-my-group">
                     <p>{{ $message->name_group }}</p>
 
-                    <form action="{{ route('message_destroy', $message->id) }}" method="POST">
+                    <form action="{{ secure_url('message_destroy', $message->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
@@ -59,7 +59,7 @@
                 </div>
                 @endforeach
 
-                <form action="{{ route('add_message_route') }}" method="GET">
+                <form action="{{ secure_url('add_message_route') }}" method="GET">
                     <button class="btn btn-primary form-button-add">Добавить группу сообщений</button>
                 </form>
             </div>
