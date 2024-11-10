@@ -37,7 +37,7 @@
                 </div>
                 @endforeach
 
-                <form action="{{route('Controller_settings')}}">
+                <form action="{{secure_url('Controller_settings')}}">
                     <button class="btn btn-primary form-button-add">Добавить аккаунт</button>
                 </form>
             </div>
