@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-3">
     <div class="col-md-8">
-        <form action="{{ secure_url('New_user') }}" method="POST">
+        <form action="{{secure_url('New_user') }}" method="POST">
             @csrf
 
             <div class="mb-3">
