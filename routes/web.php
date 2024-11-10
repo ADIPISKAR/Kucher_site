@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VkController;
 
 
-Route::get('/', function () {
+Route::post('/', function () {
     return view('auth/login');
 });
 
