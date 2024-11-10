@@ -30,5 +30,4 @@ RUN cp .env.example .env \
 COPY .docker/nginx/laravel.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
 CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
