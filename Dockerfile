@@ -18,7 +18,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && chmod -R 755 /var/www/html/bootstrap/cache
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html   
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN cp .env.example .env \
