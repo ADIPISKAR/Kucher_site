@@ -39,3 +39,4 @@ EXPOSE 80
 
 # Запуск PHP встроенного сервера
 CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html/public"]
+    
