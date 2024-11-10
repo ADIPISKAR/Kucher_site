@@ -36,7 +36,7 @@ RUN cp .env.example .env \
     && php artisan view:cache
 
 # Копируем файл конфигурации Nginx
-COPY laravel.conf /etc/nginx/nginx.conf
+COPY .docker/laravel.conf /etc/nginx/conf.d/default.conf
 
 # Открываем порт 80 для Nginx
 EXPOSE 80
