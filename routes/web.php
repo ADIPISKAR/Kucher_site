@@ -27,8 +27,8 @@ Route::post('/New_user', [App\Http\Controllers\Back_doing\Controller_settings::c
 
 Route::post('/add_message', [App\Http\Controllers\Back_doing\Controller_settings::class, 'add_message'])->name('add_message');
 
-Route::delete('/account/{id}', [App\Http\Controllers\Back_doing\Controller_settings::class, 'destroy_user'])->name('destroy_user');
-Route::delete('/message/{id}', [App\Http\Controllers\Back_doing\Controller_settings::class, 'message_destroy'])->name('message_destroy');
+Route::delete('/destroy_user/{id}', [App\Http\Controllers\Back_doing\Controller_settings::class, 'destroy_user'])->name('destroy_user');
+Route::delete('/message_destroy/{id}', [App\Http\Controllers\Back_doing\Controller_settings::class, 'message_destroy'])->name('message_destroy');
 Route::get('/add_message_route', [App\Http\Controllers\Back_doing\Controller_settings::class, 'add_message_route'])->name('add_message_route');
 Route::post('/vk_doing', [App\Http\Controllers\Back_doing\VkController::class, 'init'])->name('vk_doing');
 
