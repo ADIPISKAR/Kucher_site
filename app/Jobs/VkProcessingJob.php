@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class VkProcessingJob implements ShouldQueue
+class VkProcessingJob implements Dispatchable
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
