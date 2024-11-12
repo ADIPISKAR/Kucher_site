@@ -4,14 +4,16 @@ namespace App\Jobs;
 use App\Http\Controllers\API\VkApi;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
+
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class VkProcessingJob implements Dispatchable
+
+class VkProcessingJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, SerializesModels;
 
     protected $access_token;   // Делаем свойства доступными
     protected $mess_pass;
