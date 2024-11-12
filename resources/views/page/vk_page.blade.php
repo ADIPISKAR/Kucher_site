@@ -8,7 +8,7 @@
             <p class="text-white">Среда 2 Фев, 2021</p>
         </div>
 
-        <form action="{{ route('vk_doing') }}" method="POST">
+        <form action="{{ secure_url('vk_doing') }}" method="POST">
             @csrf
 
             <select name="User" id="User" class="my-select-form mb-3">
