@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-
 class VkProcessingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, SerializesModels;
