@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Jobs;
-
 use App\Http\Controllers\API\VkApi;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
