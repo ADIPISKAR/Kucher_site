@@ -27,41 +27,44 @@ class VkProcessingJob implements ShouldQueue
 
     public function handle()
     {
-
         echo 'Обработка началась';
-        // Создаем объект VKApi
-        $VK = new VKApi;
-
-        // Используем $this->access_token, которое теперь доступно
-        $drop_message = $VK->getMessageLast($this->access_token);
-        $last_message = $drop_message['text'];
-
-        if(strpos($last_message, 'Слишком много лайков за сегодня – ставь Мне нравится только тем, кто тебе действительно нравится. Загляни к нам попозже') !== false){
-            return false;
-        }
-
-        foreach ($this->mess_pass as $iskl) {
-            if (strpos($last_message, $iskl) !== false) {
-                $VK->sendMessageWithGuzzle($this->access_token, '/start');
+        try {
+            // Создаем объект VKApi
+            $VK = new VKApi;
+    
+            $drop_message = $VK->getMessageLast($this->access_token);
+            $last_message = $drop_message['text'];
+    
+            if (strpos($last_message, 'Слишком много лайков за сегодня') !== false) {
+                return false;
+            }
+    
+            foreach ($this->mess_pass as $iskl) {
+                if (strpos($last_message, $iskl) !== false) {
+                    $VK->sendMessageWithGuzzle($this->access_token, '/start');
+                    sleep(rand(2, 5));
+                    $VK->sendMessageWithGuzzle($this->access_token, '1');
+                    sleep(rand(2, 5));
+                    $VK->sendMessageWithGuzzle($this->access_token, '5');
+                    return;
+                }
+            }
+    
+            if ((rand(0, 10) >= 5) && ($drop_message['from_id'] == '-91050183')) {
                 sleep(rand(2, 5));
-                $VK->sendMessageWithGuzzle($this->access_token, '1');
+                $VK->sendMessageWithGuzzle($this->access_token, '2');
                 sleep(rand(2, 5));
-                $VK->sendMessageWithGuzzle($this->access_token, '5');
+                $VK->sendMessageWithGuzzle($this->access_token, 'Привет, чем занимаешься?');
+                return;
+            } else {
+                sleep(rand(2, 5));
+                $VK->sendMessageWithGuzzle($this->access_token, '3');
                 return;
             }
-        }
-
-        // Пример работы с сообщениями
-        if ((rand(0, 10) >= 5) && ($drop_message['from_id'] == '-91050183')) {
-            sleep(rand(2, 5));
-            $VK->sendMessageWithGuzzle($this->access_token, '2');
-            sleep(rand(2, 5));
-            $VK->sendMessageWithGuzzle($this->access_token, 'Привет, чем занимаешься?');
-            return;
-        } else {
-            sleep(rand(2, 5));
-            $VK->sendMessageWithGuzzle($this->access_token, '3');
-            return;
+        } catch (\Exception $e) {
+            // Логируем ошибку
+            \Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
         }
     }
+    
 }
