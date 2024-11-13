@@ -1,47 +1,40 @@
-version: "4.3"
+version: '3.8'
 
 services:
-  nginx:
-    image: "nginx:stable-alpine"
-    ports:
-      - "8000:80"
+  # Контейнер для PHP-FPM
+  app_fpm:
+    image: php:8.1-fpm
+    container_name: app_php_fpm
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./src:/var/www/laravel
-    depends_on:
-      - mysql
-      - php
+      - .:/var/www/html
+    networks:
+      - app_network
 
-  php:
-    build:
-      context: dockerfiles
-      dockerfile: php.Dockerfile
+  # Контейнер для PHP-CLI (для обработки очередей)
+  app_cli:
+    image: php:8.1-cli
+    container_name: app_php_cli
     volumes:
-      - ./src:/var/www/laravel
+      - .:/var/www/html
+    entrypoint: ["php", "/var/www/html/artisan", "queue:work"]
+    networks:
+      - app_network
 
-  mysql:
-    image: mysql:8.0
-    ports:
-      - "3316:3306"
-    env_file:
-      - env/mysql.env
+  # База данных MySQL для Laravel
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - app_network
 
-  composer:
-    build:
-      context: dockerfiles
-      dockerfile: composer.Dockerfile
-    volumes:
-      - db_data:/var/www/laravel
+networks:
+  app_network:
+    driver: bridge
 
-  artisan:
-    build:
-      context: dockerfiles
-      dockerfile: php.Dockerfile
-    volumes:
-      - ./src:/var/www/laravel
-    entrypoint: ["php", "/var/www/laravel/artisan"]
-    
 volumes:
   db_data:
