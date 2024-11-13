@@ -5,16 +5,19 @@
 
     RewriteEngine On
 
-    # Handle Authorization Header
+    # Исключение для статических файлов, таких как favicon.ico
+    RewriteCond %{REQUEST_URI} !\.(?:ico|gif|jpg|jpeg|png|css|js|svg|webp)$ [NC]
+
+    # Обработка заголовка авторизации
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Перенаправление конечных слэшей, если это не папка
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Обработка запросов через фронтальный контроллер
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
