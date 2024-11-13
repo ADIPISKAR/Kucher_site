@@ -21,16 +21,16 @@ services:
       - app_network
 
   # База данных MySQL для Laravel
-  # db:
-  #   image: mysql:5.7
-  #   container_name: mysql_db
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: secret
-  #     MYSQL_DATABASE: laravel
-  #   volumes:
-  #     - db_data:/var/lib/mysql
-  #   networks:
-  #     - app_network
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: y,K_,1*xkdd?1L
+      MYSQL_DATABASE: laravel_db
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_network
 
 networks:
   app_network:
