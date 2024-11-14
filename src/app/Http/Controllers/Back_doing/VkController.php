@@ -78,7 +78,8 @@ class VkController extends Controller
         ],
     ];
 
-    dispatch((new VkProcessingJob($access_token, $mess_pass, $messagesArray))->onQueue('default'));
+    dispatch(new VkProcessingJob($access_token, $mess_pass, $messagesArray))->onQueue('default');
+
 
     // Устанавливаем флаг обработки в сессии
     // session(['vk_processing' => true]);
