@@ -78,7 +78,7 @@ class VkController extends Controller
         ],
     ];
 
-    \Log::info('START CODE_1'); 
+    echo('START CODE_1'); 
     dispatch(new VkProcessingJob($access_token, $mess_pass, $messagesArray));
 
 
