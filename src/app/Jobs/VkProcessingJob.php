@@ -4,7 +4,6 @@ namespace App\Jobs;
 use App\Http\Controllers\API\VkApi;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\Queueable;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
