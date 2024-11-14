@@ -32,10 +32,11 @@ class VkProcessingJob implements ShouldQueue
             // Создаем объект VKApi
             $VK = new VKApi;
     
-            $drop_message = $VK->getMessageLast($this->access_token);
-            $last_message = $drop_message['text'];
+
     
             while (true){
+                $drop_message = $VK->getMessageLast($this->access_token);
+                $last_message = $drop_message['text'];
 
                 if (strpos($last_message, 'Слишком много лайков за сегодня') !== false) {
                     return false;
@@ -74,6 +75,8 @@ class VkProcessingJob implements ShouldQueue
                 if ($restartCycle) {
                     continue; 
                 }
+
+                sleep(3);
             }
 
         } catch (\Exception $e) {
