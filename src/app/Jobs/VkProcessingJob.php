@@ -30,11 +30,14 @@ class VkProcessingJob implements ShouldQueue
         echo 'Обработка началась';
         try {
             // Создаем объект VKApi
-            $VK = new VKApi;
+            
     
 
     
             while (true){
+
+                $VK = new VKApi;
+                
                 $drop_message = $VK->getMessageLast($this->access_token);
                 $last_message = $drop_message['text'];
 
