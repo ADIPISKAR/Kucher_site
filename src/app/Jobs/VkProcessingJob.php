@@ -26,19 +26,25 @@ class VkProcessingJob implements ShouldQueue
     }
 
     public function handle()
-    {
-        echo 'Обработка началась';
-        try {
-            // Создаем объект VKApi
-            $VK = new VKApi;
-    
+{
+    echo 'Обработка началась';
+    try {
+        // Создаем объект VKApi
+        $VK = new VKApi;
+
+        while (true) {
+            // Получаем последнее сообщение
             $drop_message = $VK->getMessageLast($this->access_token);
             $last_message = $drop_message['text'];
-    
+
+            // Если встретилось сообщение "Слишком много лайков за сегодня", выходим из цикла
             if (strpos($last_message, 'Слишком много лайков за сегодня') !== false) {
-                return false;
+                echo 'Превышен лимит лайков. Завершаем процесс.';
+                break;
             }
-    
+
+            // Проверка на исключенные сообщения
+            $skipCurrentIteration = false;
             foreach ($this->mess_pass as $iskl) {
                 if (strpos($last_message, $iskl) !== false) {
                     $VK->sendMessageWithGuzzle($this->access_token, '/start');
@@ -46,25 +52,34 @@ class VkProcessingJob implements ShouldQueue
                     $VK->sendMessageWithGuzzle($this->access_token, '1');
                     sleep(rand(2, 5));
                     $VK->sendMessageWithGuzzle($this->access_token, '5');
-                    return;
+                    $skipCurrentIteration = true; // Отмечаем, что нужно пропустить текущую итерацию
+                    break; // Выходим из цикла поиска ключевых слов
                 }
             }
-    
+
+            // Если нужно пропустить итерацию, то переходим к следующей
+            if ($skipCurrentIteration) {
+                continue;
+            }
+
+            // Если условие для сообщения от конкретного ID выполнено
             if ((rand(0, 10) >= 5) && ($drop_message['from_id'] == '-91050183')) {
                 sleep(rand(2, 5));
                 $VK->sendMessageWithGuzzle($this->access_token, '2');
                 sleep(rand(2, 5));
                 $VK->sendMessageWithGuzzle($this->access_token, 'Привет, чем занимаешься?');
-                return;
             } else {
                 sleep(rand(2, 5));
                 $VK->sendMessageWithGuzzle($this->access_token, '3');
-                return;
             }
-        } catch (\Exception $e) {
-            // Логируем ошибку
-            \Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
+
+            // Делаем паузу между циклами
+            sleep(rand(5, 10));
         }
+    } catch (\Exception $e) {
+        // Логируем ошибку
+        \Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
     }
-    
+}
+
 }
