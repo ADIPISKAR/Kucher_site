@@ -32,6 +32,11 @@ class VkProcessingJob implements ShouldQueue
             $VK = new VKApi;
     
             while (true) {
+
+                \Log::debug('Это отладочное сообщение');
+                \Log::info('Это информационное сообщение');
+                \Log::error('Это сообщение об ошибке');
+
                 // Получаем новое сообщение
                 $drop_message = $VK->getMessageLast($this->access_token);
                 $last_message = $drop_message['text'];
