@@ -28,8 +28,8 @@ class VkProcessingJob implements ShouldQueue
     }
 
     public function handle()
-{
-    echo 'Обработка началась';
+    {
+    Log::info('Job started');  
     try {
         $VK = new VKApi;
 
