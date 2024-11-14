@@ -65,13 +65,10 @@ class VkProcessingJob implements ShouldQueue
                     sleep(rand(2, 5));
                     $VK->sendMessageWithGuzzle($this->access_token, 'Привет, чем занимаешься?');
                     $restartCycle = true;
-                    break;
                 } else {
                     sleep(rand(2, 5));
                     $VK->sendMessageWithGuzzle($this->access_token, '3');
                     $restartCycle = true;
-                    $restartCycle = true;
-                    break;
                 }
 
                 if ($restartCycle) {
