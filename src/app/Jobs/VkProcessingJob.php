@@ -33,6 +33,7 @@ class VkProcessingJob implements ShouldQueue
     
             while (true) {
 
+                Log::info('Тестовое информационное сообщение');
                 \Log::debug('Это отладочное сообщение');
                 \Log::info('Это информационное сообщение');
                 \Log::error('Это сообщение об ошибке');
