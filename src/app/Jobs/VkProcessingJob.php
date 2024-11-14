@@ -10,6 +10,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+use Illuminate\Support\FacadesLog;
+
 class VkProcessingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, SerializesModels;
@@ -38,11 +40,11 @@ class VkProcessingJob implements ShouldQueue
                 $from_id = $drop_message['from_id'];  // id отправителя для дополнительной логики
 
                 // Логирование последнего сообщения
-                \Log::info("Последнее сообщение: $last_message");
+                Log::info("Последнее сообщение: $last_message");
 
                 // Если встречаем сообщение о "слишком много лайков", останавливаем выполнение
                 if (strpos($last_message, 'Слишком много лайков за сегодня') !== false) {
-                    \Log::info("Цикл завершен из-за превышения лайков.");
+                    Log::info("Цикл завершен из-за превышения лайков.");
                     return false;
                 }
         
@@ -52,7 +54,7 @@ class VkProcessingJob implements ShouldQueue
                 foreach ($this->mess_pass as $iskl) {
                     if (strpos($last_message, $iskl) !== false) {
                         // Ответы на основе найденного сообщения
-                        \Log::info("Сообщение найдено, начинаем действия.");
+                        Log::info("Сообщение найдено, начинаем действия.");
                         $VK->sendMessageWithGuzzle($this->access_token, '/start');
                         sleep(rand(2, 5));
                         $VK->sendMessageWithGuzzle($this->access_token, '1');
@@ -91,7 +93,7 @@ class VkProcessingJob implements ShouldQueue
             }
 
         } catch (\Exception $e) {
-            \Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
+            Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
         }
     }
 }
