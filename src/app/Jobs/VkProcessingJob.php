@@ -91,7 +91,8 @@ class VkProcessingJob implements ShouldQueue
             // Небольшая задержка перед следующим запросом
             sleep(3);  // Задержка 3 секунды, чтобы избежать слишком частых запросов
         }
-
+        
+        \Log::info('VkProcessingJob completed successfully');
     } catch (\Exception $e) {
         Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
     }
