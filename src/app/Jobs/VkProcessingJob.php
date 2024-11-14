@@ -1,4 +1,33 @@
-public function handle()
+<?php
+
+namespace App\Jobs;
+
+use App\Http\Controllers\API\VkApi;
+use GuzzleHttp\Client;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+
+use Illuminate\Support\FacadesLog;
+
+class VkProcessingJob implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, SerializesModels;
+
+    protected $access_token;
+    protected $mess_pass;
+    protected $messagesArray;
+
+    public function __construct($access_token, $mess_pass, $messagesArray)
+    {
+        $this->access_token = $access_token;
+        $this->mess_pass = $mess_pass;
+        $this->messagesArray = $messagesArray;
+    }
+
+    public function handle()
 {
     echo 'Обработка началась';
     try {
@@ -66,4 +95,6 @@ public function handle()
     } catch (\Exception $e) {
         Log::error('Ошибка в обработке сообщения VK: ' . $e->getMessage());
     }
+}
+
 }
