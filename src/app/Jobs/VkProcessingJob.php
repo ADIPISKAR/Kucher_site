@@ -29,9 +29,7 @@ class VkProcessingJob implements ShouldQueue
 {
     echo 'Обработка началась';
     try {
-        
-        echo 'VkProcessingJob started' . PHP_EOL;
-
+        // Создаем объект VKApi
         $VK = new VKApi;
 
         while (true) {
@@ -49,17 +47,12 @@ class VkProcessingJob implements ShouldQueue
             $skipCurrentIteration = false;
             foreach ($this->mess_pass as $iskl) {
                 if (strpos($last_message, $iskl) !== false) {
-                    echo 'Processing message ID: ' . $message->id . PHP_EOL;
                     $VK->sendMessageWithGuzzle($this->access_token, '/start');
                     sleep(rand(2, 5));
                     $VK->sendMessageWithGuzzle($this->access_token, '1');
                     sleep(rand(2, 5));
                     $VK->sendMessageWithGuzzle($this->access_token, '5');
                     $skipCurrentIteration = true; // Отмечаем, что нужно пропустить текущую итерацию
-
-                    echo 'Message text: ' . $message->text . PHP_EOL;
-                    echo 'Message status: ' . ($message->sent ? 'Sent' : 'Not sent') . PHP_EOL;
-
                     break; // Выходим из цикла поиска ключевых слов
                 }
             }
@@ -84,8 +77,7 @@ class VkProcessingJob implements ShouldQueue
             sleep(rand(5, 10));
         }
     } catch (\Exception $e) {
-        echo 'Error occurred: ' . $e->getMessage() . PHP_EOL;
-        echo 'Stack trace: ' . $e->getTraceAsString() . PHP_EOL;
+        // Логируем ошибку
         echo('Ошибка в обработке сообщения VK: ' . $e->getMessage());
     }
 }
