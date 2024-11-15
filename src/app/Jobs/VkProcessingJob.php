@@ -80,8 +80,8 @@ class VkProcessingJob implements ShouldQueue
             sleep(rand(5, 10));
         }
     } catch (\Exception $e) {
-        // Логируем ошибку
         echo('Ошибка в обработке сообщения VK: ' . $e->getMessage());
+        throw $e;
     }
 }
 
