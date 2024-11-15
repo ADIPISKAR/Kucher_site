@@ -22,7 +22,7 @@
 
                 @foreach ($accounts as $account)
                 <div class="list-my-group">
-                    <div class="d-flex mt-2">
+                    <div class="d-flex mt-2" style="width: 80%;">
                         <p>{{ $account->name }}</p>
                         <p style="overflow: hidden; width: 450px; text-overflow: ellipsis;">{{ $account->Hash }}</p>
                     </div>
