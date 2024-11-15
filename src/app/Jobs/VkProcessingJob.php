@@ -70,7 +70,8 @@ class VkProcessingJob implements ShouldQueue
                 sleep(rand(2, 5));
                 $VK->sendMessageWithGuzzle($this->access_token, '2');
                 sleep(rand(2, 5));
-                $VK->sendMessageWithGuzzle($this->access_token, 'Привет, чем занимаешься?');
+                $randomMessage = $this->messagesArray['messages'][array_rand($this->messagesArray['messages'])];
+                $VK->sendMessageWithGuzzle($this->access_token, $randomMessage);
             } else {
                 sleep(rand(2, 5));
                 $VK->sendMessageWithGuzzle($this->access_token, '3');
