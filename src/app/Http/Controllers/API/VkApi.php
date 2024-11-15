@@ -11,55 +11,70 @@ use App\Models\Message; // Убедитесь, что добавили этот 
 class VkApi extends Controller
 {
     function sendMessageWithGuzzle($access_token, $message) {
-        $client = new Client([
-            'verify' => false,  // Отключить проверку сертификатов
-        ]);
+        try {
+                $client = new Client([
+                    'verify' => false,  // Отключить проверку сертификатов
+                ]);
 
-        $response = $client->post('https://api.vk.com/method/messages.send', [
-            'form_params' => [
-                'peer_id' => -91050183, // ID получателя
-                'message' => $message,
-                'random_id' => 0, // Генерация уникального ID для сообщения
-                'access_token' => $access_token,
-                'v' => '5.199', // Версия API
-            ],
-        ]);
+                $response = $client->post('https://api.vk.com/method/messages.send', [
+                    'form_params' => [
+                        'peer_id' => -91050183, // ID получателя
+                        'message' => $message,
+                        'random_id' => 0, // Генерация уникального ID для сообщения
+                        'access_token' => $access_token,
+                        'v' => '5.199', // Версия API
+                    ],
+                ]);
 
-        // Декодируем ответ
-        $responseData = json_decode($response->getBody(), true);
+                // Декодируем ответ
+                $responseData = json_decode($response->getBody(), true);
 
-        // Проверяем на наличие ошибок
-        if (isset($responseData['error'])) {
-            echo 'Ошибка: ' . $responseData['error']['error_msg'];
-        } else {
-            echo 'Сообщение отправлено! ID сообщения: ' . $responseData['response'];
+                // Проверяем на наличие ошибок
+                if (isset($responseData['error'])) {
+                    echo 'Ошибка: ' . $responseData['error']['error_msg'];
+                } else {
+                    echo 'Сообщение отправлено! ID сообщения: ' . $responseData['response'];
+                }
+
+        } 
+        catch (\Exception $e) {
+            echo('Ошибка в обработке сообщения VK: ' . $e->getMessage());
+            throw $e;
         }
     }
 
     public function getMessageLast($access_token)
     {
-        $client = new Client([
-            'verify' => false,  // Отключить проверку сертификатов
-        ]);
+        try {
+                $client = new Client([
+                    'verify' => false,  // Отключить проверку сертификатов
+                ]);
 
-        // Получение списка сообщений из чата
-        $response = $client->post('https://api.vk.com/method/messages.getHistory', [
-            'form_params' => [
-                'peer_id' => -91050183, // ID чата
-                'count' => 1, // Получаем только последнее сообщение
-                'access_token' => $access_token, // Используем переданный токен
-                'v' => '5.131' // Версия API
-            ],
-        ]);
+                // Получение списка сообщений из чата
+                $response = $client->post('https://api.vk.com/method/messages.getHistory', [
+                    'form_params' => [
+                        'peer_id' => -91050183, // ID чата
+                        'count' => 1, // Получаем только последнее сообщение
+                        'access_token' => $access_token, // Используем переданный токен
+                        'v' => '5.131' // Версия API
+                    ],
+                ]);
 
-        // Декодируем ответ
-        $responseData = json_decode($response->getBody(), true);
+                // Декодируем ответ
+                $responseData = json_decode($response->getBody(), true);
 
-        // Проверяем наличие сообщений
-        if (isset($responseData['response']['items']) && !empty($responseData['response']['items'])) {
-            return $responseData['response']['items'][0]; // Возвращаем последнее сообщение
+                // Проверяем наличие сообщений
+                if (isset($responseData['response']['items']) && !empty($responseData['response']['items'])) {
+                    return $responseData['response']['items'][0]; // Возвращаем последнее сообщение
+                }
+
+                return null; // Если сообщений нет, возвращаем null
+
+        } 
+        catch (\Exception $e) {
+            echo('Ошибка в обработке сообщения VK: ' . $e->getMessage());
+            throw $e;
         }
 
-        return null; // Если сообщений нет, возвращаем null
     }
 }
