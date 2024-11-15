@@ -14,9 +14,6 @@ class VkProcessingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, SerializesModels;
 
-    public $tries = 3;
-    public $timeout = 120;
-
     protected $access_token;
     protected $mess_pass;
     protected $messagesArray;
