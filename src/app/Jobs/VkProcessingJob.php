@@ -77,7 +77,6 @@ class VkProcessingJob implements ShouldQueue
                 $VK->sendMessageWithGuzzle($this->access_token, '3');
             }
 
-            // Делаем паузу между циклами
             sleep(rand(5, 10));
         }
     } catch (\Exception $e) {
