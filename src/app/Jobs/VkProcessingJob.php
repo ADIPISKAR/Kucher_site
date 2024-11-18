@@ -50,21 +50,8 @@ class VkProcessingJob implements ShouldQueue
                 // Проверка на исключенные сообщения
                 $skipCurrentIteration = false;
                 foreach ($this->mess_pass as $iskl) {
-                    if (strpos($last_message, $iskl) !== false) {
-                        // Проверяем, есть ли уже такое сообщение в таблице
-                        $existingMessage = ButterflyVk::where('message', $last_message)->first();
-    
-                        // Если сообщение уже существует, пропускаем его и отправляем нужное сообщение
-                        if ($existingMessage) {
-                            $VK->sendMessageWithGuzzle($this->access_token, '3');
-                            continue; // Переходим к следующей итерации
-                        }
-    
-                        // Если сообщения нет, добавляем его в таблицу
-                        ButterflyVk::create([
-                            'message' => $last_message
-                        ]);
-    
+                    if (strpos($last_message, $iskl) == True) {
+
                         // Прочие действия
                         $VK->sendMessageWithGuzzle($this->access_token, '/start');
                         sleep(rand(2, 5));
@@ -84,6 +71,19 @@ class VkProcessingJob implements ShouldQueue
     
                 // Если условие для сообщения от конкретного ID выполнено
                 if ((rand(0, 10) >= 5) && ($drop_message['from_id'] == '-91050183')) {
+
+                    // Проверяем, есть ли уже такое сообщение в таблице
+                    $existingMessage = ButterflyVk::where('message', $last_message)->first();
+
+                    if ($existingMessage) {
+                        $VK->sendMessageWithGuzzle($this->access_token, '3');
+                        continue; // Переходим к следующей итерации
+                    }
+
+                    ButterflyVk::create([
+                        'message' => $last_message
+                    ]);
+
                     sleep(rand(2, 5));
                     $VK->sendMessageWithGuzzle($this->access_token, '2');
                     sleep(rand(2, 5));
