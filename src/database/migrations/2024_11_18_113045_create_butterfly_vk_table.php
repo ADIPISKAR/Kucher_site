@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('message', 500)->nullable(); // Сообщение (максимум 500 символов)
             $table->timestamps(); // Поля created_at и updated_at
         });
+        
     }
 
     /**
