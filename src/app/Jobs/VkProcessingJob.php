@@ -73,6 +73,7 @@ class VkProcessingJob implements ShouldQueue
                         $VK->sendMessageWithGuzzle($this->access_token, '5');
                         $skipCurrentIteration = true; // Отмечаем, что нужно пропустить текущую итерацию
                         break; // Выходим из цикла поиска ключевых слов
+                        continue;
                     }
                 }
     
