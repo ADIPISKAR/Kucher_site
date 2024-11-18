@@ -11,7 +11,7 @@ services:
       - app_network
 
   # Контейнер для PHP-CLI (для обработки очередей)
-  app_cli:
+  app_cli:  
     image: php:8.2-cli
     container_name: app_php_cli
     volumes:
