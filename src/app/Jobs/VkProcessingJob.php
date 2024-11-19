@@ -28,7 +28,7 @@ class VkProcessingJob implements ShouldQueue
     {
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
-        $this->$excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
+        $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->excludedWords = $excludedWords ?: [];
 
     }
