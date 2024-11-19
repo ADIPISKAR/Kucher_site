@@ -63,25 +63,23 @@ class VkApi extends Controller
             // Декодируем ответ
             $responseData = json_decode($response->getBody(), true);
     
-            // Проверяем наличие ошибки в ответе
+            // Проверка на наличие ошибок в ответе
             if (isset($responseData['error'])) {
-                echo 'Ошибка в ответе VK: ' . $responseData['error']['error_msg'];
-                return null;  // Если есть ошибка, возвращаем null
+                throw new \Exception('Ошибка API VK: ' . $responseData['error']['error_msg']);
             }
     
-            // Проверяем наличие сообщений
-            if (isset($responseData['response']['items']) && is_array($responseData['response']['items']) && count($responseData['response']['items']) > 0) {
+            // Проверяем наличие сообщений и что это массив
+            if (isset($responseData['response']['items']) && is_array($responseData['response']['items']) && !empty($responseData['response']['items'])) {
                 return $responseData['response']['items'][0]; // Возвращаем последнее сообщение
             }
     
-            // Если сообщений нет, возвращаем null
-            return null;
-    
-            
-        } catch (\Exception $e) {
-            echo 'Ошибка в обработке сообщения VK: ' . $e->getMessage();
+            return null; // Если сообщений нет, возвращаем null
+        } 
+        catch (\Exception $e) {
+            echo('Ошибка в обработке сообщения VK: ' . $e->getMessage());
             throw $e;
         }
     }
+    
     
 }
