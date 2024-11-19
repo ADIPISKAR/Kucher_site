@@ -38,7 +38,7 @@ class VkApi extends Controller
 
         } 
         catch (\Exception $e) {
-            echo('Ошибка в обработке сообщения VK: ' . $e->getMessage());
+            echo('Ошибка в отправлении сообщения VK: ' . $e->getMessage());
             throw $e;
         }
     }
