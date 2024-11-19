@@ -27,15 +27,15 @@ class VkProcessingJob implements ShouldQueue
     public function __construct($access_token, $messagesArray)
     {
         $this->access_token = $access_token;
-        $this->excludedWords = DB::table('words_exclusion')->pluck('word')->toArray();
         $this->messagesArray = $messagesArray;
     }
 
     public function handle()
     {
         try {
-            // Создаем объект VKApi
+            
             $VK = new VKApi;
+            $this->excludedWords = DB::table('words_exclusion')->pluck('word')->toArray();
     
             while (true) {
                 // Получаем последнее сообщение
