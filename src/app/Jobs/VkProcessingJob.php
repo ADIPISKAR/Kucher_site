@@ -28,8 +28,10 @@ class VkProcessingJob implements ShouldQueue
     {
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
-        $this->excludedWords = DB::table('words_exclusion')->pluck('word')->toArray();
-        $this->excludedWords = $this->excludedWords ?: [];
+        $excludedWords = DB::table('words_exclusion')->pluck('word')->filter()->toArray();
+
+        // Убедимся, что $excludedWords всегда является массивом
+        $this->excludedWords = is_array($excludedWords) ? $excludedWords : [];
 
     }
 
