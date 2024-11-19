@@ -51,7 +51,7 @@ class VkController extends Controller
 
         dispatch(new VkProcessingJob($access_token, $messagesArray));
 
-        // return redirect()->back()->with('message', 'Процесс запущен.');
+        return redirect()->back()->with('message', 'Процесс запущен.');
     }
 
 }

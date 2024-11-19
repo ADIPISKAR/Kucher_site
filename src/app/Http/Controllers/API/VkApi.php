@@ -63,7 +63,7 @@ class VkApi extends Controller
                 // Декодируем ответ
                 $responseData = json_decode($response->getBody(), true);
 
-                echo 'Ответ API: ' . json_encode($responseData, JSON_PRETTY_PRINT) . PHP_EOL;
+                Log::info('VkProcessingJob: Ответ от API', ['response' => $response]);
 
                 // Проверяем наличие сообщений
                 if (isset($responseData['response']['items']) && !empty($responseData['response']['items'])) {

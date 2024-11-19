@@ -33,7 +33,6 @@ class VkProcessingJob implements ShouldQueue
 
     public function handle()
     {
-        echo 'Обработка началась';
         try {
             // Создаем объект VKApi
             $VK = new VKApi;
