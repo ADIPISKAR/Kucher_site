@@ -44,8 +44,6 @@ class VkProcessingJob implements ShouldQueue
                 // Получаем последнее сообщение
                 $drop_message = $VK->getMessageLast($this->access_token);
                 $last_message = $drop_message['text'];
-
-                echo $this->excludedWords;
     
                 // Если встретилось сообщение "Слишком много лайков за сегодня", выходим из цикла
                 if (strpos($last_message, 'Слишком много лайков за сегодня') !== false) {
