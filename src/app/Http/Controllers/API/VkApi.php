@@ -77,6 +77,7 @@ class VkApi extends Controller
             // Если сообщений нет, возвращаем null
             return null;
     
+            
         } catch (\Exception $e) {
             echo 'Ошибка в обработке сообщения VK: ' . $e->getMessage();
             throw $e;
