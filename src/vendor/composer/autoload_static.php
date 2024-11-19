@@ -347,8 +347,8 @@ class ComposerStaticInitf43c9279dde144eeb1fbec737c64836f
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -554,10 +554,12 @@ class ComposerStaticInitf43c9279dde144eeb1fbec737c64836f
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Jobs\\VkProcessingJob' => __DIR__ . '/../..' . '/app/Jobs/VkProcessingJob.php',
         'App\\Models\\AccountListing' => __DIR__ . '/../..' . '/app/Models/AccountListing.php',
+        'App\\Models\\ButterflyVk' => __DIR__ . '/../..' . '/app/Models/ButterflyVk.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
         'App\\Models\\ModeliVK' => __DIR__ . '/../..' . '/app/Models/ModeliVK.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\UsersMain' => __DIR__ . '/../..' . '/app/Models/UsersMain.php',
+        'App\\Models\\WordsExclusion' => __DIR__ . '/../..' . '/app/Models/WordsExclusion.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -675,6 +677,7 @@ class ComposerStaticInitf43c9279dde144eeb1fbec737c64836f
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\WordsExclusionSeeder' => __DIR__ . '/../..' . '/database/seeders/WordsExclusionSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
