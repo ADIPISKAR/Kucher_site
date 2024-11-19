@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\ButterflyVk;
-use Illuminate\Support\Facades\DB;
+use App\Models\WordExclusion;
 
 
 class VkProcessingJob implements ShouldQueue
@@ -28,7 +28,7 @@ class VkProcessingJob implements ShouldQueue
     {
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
-        $excludedWords = DB::table('words_exclusion')->pluck('word')->filter()->toArray();
+        $excludedWords = WordExclusion::pluck('word')->filter()->toArray();
         $this->excludedWords = is_array($excludedWords) ? $excludedWords : [];
 
     }
