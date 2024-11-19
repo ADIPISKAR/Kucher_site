@@ -29,8 +29,6 @@ class VkProcessingJob implements ShouldQueue
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
         $excludedWords = DB::table('words_exclusion')->pluck('word')->filter()->toArray();
-
-        // Убедимся, что $excludedWords всегда является массивом
         $this->excludedWords = is_array($excludedWords) ? $excludedWords : [];
 
     }
@@ -46,6 +44,8 @@ class VkProcessingJob implements ShouldQueue
                 // Получаем последнее сообщение
                 $drop_message = $VK->getMessageLast($this->access_token);
                 $last_message = $drop_message['text'];
+
+                echo $this->excludedWords;
     
                 // Если встретилось сообщение "Слишком много лайков за сегодня", выходим из цикла
                 if (strpos($last_message, 'Слишком много лайков за сегодня') !== false) {
@@ -55,7 +55,7 @@ class VkProcessingJob implements ShouldQueue
     
                 // Проверка на исключенные сообщения
                 $skipCurrentIteration = false;
-                foreach ($this->excludedWords  as $iskl) {
+                foreach ($this->excludedWords as $iskl) {
                     if (strpos($last_message, $iskl) !== False) {
 
                         // Прочие действия
