@@ -19,13 +19,13 @@ class VkProcessingJob implements ShouldQueue
     public $timeout = 2700;
 
     protected $access_token;
-    protected $mess_pass;
+    protected $excludedWords;
     protected $messagesArray;
 
-    public function __construct($access_token, $mess_pass, $messagesArray)
+    public function __construct($access_token, $messagesArray)
     {
         $this->access_token = $access_token;
-        $this->mess_pass = $mess_pass;
+        $this->$excludedWords = DB::table('words_exclusion')->pluck('word')->toArray();
         $this->messagesArray = $messagesArray;
     }
 
@@ -49,8 +49,8 @@ class VkProcessingJob implements ShouldQueue
     
                 // Проверка на исключенные сообщения
                 $skipCurrentIteration = false;
-                foreach ($this->mess_pass as $iskl) {
-                    if (strpos($last_message, $iskl) == True) {
+                foreach ($this->excludedWords  as $iskl) {
+                    if (strpos($last_message, $iskl) !== False) {
 
                         // Прочие действия
                         $VK->sendMessageWithGuzzle($this->access_token, '/start');
