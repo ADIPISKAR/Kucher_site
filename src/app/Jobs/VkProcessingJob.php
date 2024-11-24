@@ -52,9 +52,9 @@ class VkProcessingJob implements ShouldQueue
                     if (strpos($last_message, $iskl) !== False) {
 
                         $VK->sendMessageWithGuzzle($this->access_token, '/start');
-                        sleep(rand(2, 5));
+                        sleep(rand(3, 7));
                         $VK->sendMessageWithGuzzle($this->access_token, '1');
-                        sleep(rand(2, 5));
+                        sleep(rand(3, 7));
                         $VK->sendMessageWithGuzzle($this->access_token, '5');
                         $skipCurrentIteration = true;
                         break;
@@ -79,13 +79,13 @@ class VkProcessingJob implements ShouldQueue
                         'message' => $last_message
                     ]);
 
-                    sleep(rand(2, 5));
+                    sleep(rand(3, 7));
                     $VK->sendMessageWithGuzzle($this->access_token, '2');
-                    sleep(rand(2, 5));
+                    sleep(rand(3, 7));
                     $randomMessage = $this->messagesArray['messages'][array_rand($this->messagesArray['messages'])];
                     $VK->sendMessageWithGuzzle($this->access_token, $randomMessage);
                 } else {
-                    sleep(rand(2, 5));
+                    sleep(rand(3, 7));
                     $VK->sendMessageWithGuzzle($this->access_token, '3');
                 }
     
