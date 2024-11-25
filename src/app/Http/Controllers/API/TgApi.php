@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 use danog\MadelineProto\API;
 
-class TgClient {
+class TgApi {
     private $MadelineProto;
 
     public function __construct($settings = []) {

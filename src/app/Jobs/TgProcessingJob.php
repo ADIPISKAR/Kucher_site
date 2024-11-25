@@ -32,11 +32,11 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            $tgClient = new TgClient();
-            $tgClient->authorize();
+            $TgApi = new TgClient();
+            $TgApi->authorize();
 
 
-            $tgClient->MadelineProto->messages->sendMessage(['peer' => $this->access_token, 'message' => "Привет!"]);
+            $TgApi->MadelineProto->messages->sendMessage(['peer' => $this->access_token, 'message' => "Привет!"]);
 
 
             echo 'Сообщения отправлены';
