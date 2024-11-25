@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Http\Controllers\API\TgClient;
+use App\Models\WordsExclusion;
 
 class TgProcessingJob implements ShouldQueue
 {
