@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\API;
+
 require 'vendor/autoload.php';
 
 use danog\MadelineProto\API;
@@ -19,5 +21,4 @@ class TgApi {
             echo "Ошибка авторизации: " . $e->getMessage();
         }
     }
-    
 }
