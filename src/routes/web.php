@@ -11,7 +11,7 @@ Route::get('/', function () {
 //     Route::get('/dasboard', function(){return view('dashboard');})->name('dashboard');
 // });
 
-Route::get('/your-route', [VkController::class, 'getUserData'])->name('getUserData');
+Route::get('/your-route', [App\Http\Controllers\Back_doing\VkController::class, 'getUserData'])->name('getUserData');
 
 Auth::routes();
 
