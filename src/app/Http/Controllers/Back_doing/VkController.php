@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Back_doing;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\API\VkLongPollService;
 use App\Jobs\VkProcessingJob;
-use Illuminate\Bus\Queueable;
-
-use App\Models\AccountListing; // Убедитесь, что добавили этот импорт
-use App\Models\Message; // Убедитесь, что добавили этот импорт
+use App\Models\AccountListing;
+use App\Models\Message;
 
 class VkController extends Controller
 {

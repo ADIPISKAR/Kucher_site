@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Back_doing;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Jobs\TgProcessingJob;
+use App\Models\AccountListing;
+use App\Models\Message;
 
 class TgController extends Controller
 {

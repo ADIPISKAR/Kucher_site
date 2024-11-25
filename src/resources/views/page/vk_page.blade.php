@@ -22,11 +22,7 @@
             @endforeach
         </select>
 
-        <!-- Кнопка "Начать" -->
         <button type="submit" name="action" value="start" class="btn btn-primary form-button mb-3">Начать</button>
-
-        {{-- <!-- Кнопка "Остановить" -->
-        <button type="submit" name="action" value="stop" class="w-100 btn btn-danger form-button">Остановить</button> --}}
     </form>
 </div>
 @endsection
