@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Http\Controllers\API\TgClient;
+use App\Http\Controllers\API\TgApi;
 use App\Models\WordsExclusion;
 
 class TgProcessingJob implements ShouldQueue
@@ -32,11 +32,11 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            $TgApi = new TgClient();
-            $TgApi->authorize();
+            $tgClient = new TgApi();
+            $tgClient->authorize();
 
 
-            $TgApi->MadelineProto->messages->sendMessage(['peer' => $this->access_token, 'message' => "Привет!"]);
+            $tgClient->MadelineProto->messages->sendMessage(['peer' => $this->access_token, 'message' => "Привет!"]);
 
 
             echo 'Сообщения отправлены';
