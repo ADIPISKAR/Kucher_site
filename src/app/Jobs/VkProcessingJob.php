@@ -36,8 +36,8 @@ class VkProcessingJob implements ShouldQueue
         try {
             
             $VK = new VKApi;
+            $VK->sendMessageWithGuzzle($this->access_token, '/start');
 
-    
             while (true) {
                 $drop_message = $VK->getMessageLast($this->access_token);
                 $last_message = $drop_message['text'];
