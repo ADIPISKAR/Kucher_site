@@ -29,4 +29,3 @@ Route::delete('/message_destroy/{id}', [App\Http\Controllers\Back_doing\Controll
 Route::get('/add_message_route', [App\Http\Controllers\Back_doing\Controller_settings::class, 'add_message_route'])->name('add_message_route');
 Route::post('/vk_doing', [App\Http\Controllers\Back_doing\VkController::class, 'init'])->name('vk_doing');
 Route::post('/tg_doing', [App\Http\Controllers\Back_doing\TgController::class, 'init'])->name('tg_doing');
-// Route::post('/send-message', [App\Http\Controllers\Back_doing\TgController::class, 'sendMessage']);

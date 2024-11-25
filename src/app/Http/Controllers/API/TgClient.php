@@ -20,7 +20,3 @@ class TgClient {
         }
     }
 }
-
-// Пример использования:
-$tgClient = new TgClient();
-$tgClient->authorize();
