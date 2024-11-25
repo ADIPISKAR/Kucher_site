@@ -7,7 +7,7 @@
         <p class="text-white">Среда 2 Фев, 2021</p>
     </div>
 
-    <form action="{{ secure_url('') }}" method="POST">
+    <form action="{{ secure_url('tg_doing') }}" method="POST">
         @csrf
 
         <select name="User" id="User" class="my-select-form mb-3">
