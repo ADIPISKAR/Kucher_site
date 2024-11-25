@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-require_once '/var/www/html/Kucher_site/src/vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use danog\MadelineProto\API;
 
