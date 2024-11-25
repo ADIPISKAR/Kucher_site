@@ -21,4 +21,5 @@ class TgApi {
             echo "Ошибка авторизации: " . $e->getMessage();
         }
     }
+    
 }
