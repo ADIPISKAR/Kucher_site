@@ -20,6 +20,5 @@ class TgApi {
         } catch (Exception $e) {
             echo "Ошибка авторизации: " . $e->getMessage();
         }
-        
     }
 }
