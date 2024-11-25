@@ -5,8 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
-use App\Models\AccountListing; // Убедитесь, что добавили этот импорт
-use App\Models\Message; // Убедитесь, что добавили этот импорт
+use App\Models\AccountListing; 
+use App\Models\Message; 
 
 class VkApi extends Controller
 {

@@ -4,11 +4,16 @@ namespace App\Http\Controllers\view;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AccountListing;
+use App\Models\Message;
 
 class TgViewController extends Controller
 {
     public function index(){
 
-         return view('page/tg_page');
+        $accounts = AccountListing::all();
+        $messages = Message::all();
+
+         return view('page/tg_page', compact('accounts', 'messages'));
     }
 }

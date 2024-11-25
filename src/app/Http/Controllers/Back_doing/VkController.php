@@ -17,25 +17,16 @@ class VkController extends Controller
 
     public function init(Request $request)
     {
-        // Устанавливаем время выполнения скрипта в бесконечность
         set_time_limit(0);
-
-        // Проверяем, была ли нажата кнопка "Стоп"
-        if ($request->input('action') === 'stop') {
-            session()->forget('vk_processing'); // Удаляем флаг обработки из сессии
-            return redirect()->back()->with('message', 'Процесс остановлен.');
-        }
 
         $request->validate([
             'User' => 'required|exists:account_listings,id',
             'MessageGroup' => 'required|exists:messages,id'
         ]);
 
-        // Получаем ID пользователя и группы сообщений
         $selectedUserId = $request->input('User');
         $selectedMessageGroupId = $request->input('MessageGroup');
 
-        // Получаем токен доступа и группу сообщений
         $access_token = AccountListing::find($selectedUserId)->Hash;
         $messageGroup = Message::find($selectedMessageGroupId);
 
