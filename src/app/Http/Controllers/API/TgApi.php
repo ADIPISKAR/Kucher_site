@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-require 'vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use danog\MadelineProto\API;
 
@@ -21,5 +21,4 @@ class TgApi {
             echo "Ошибка авторизации: " . $e->getMessage();
         }
     }
-    
 }
