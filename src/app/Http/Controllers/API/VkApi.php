@@ -22,7 +22,7 @@ class VkApi extends Controller
                         'message' => $message,
                         'random_id' => 0, // Генерация уникального ID для сообщения
                         'access_token' => $access_token,
-                        'v' => '5.74', // Версия API
+                        'v' => '5.131', // Версия API
                     ],
                 ]);
 
