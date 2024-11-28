@@ -40,7 +40,7 @@ class TgProcessingJob implements ShouldQueue
                 echo "Авторизация успешна!";
                 
                 try {
-                    $tgClient->messages->sendMessage(['peer' => '@leomatchbot', 'message' => "Привет!"]);
+                    // $tgClient->messages->sendMessage(['peer' => '@leomatchbot', 'message' => "Привет!"]);
                     echo 'Сообщение отправлено';
                 } catch (\Exception $e) {
                     echo 'Ошибка при отправке сообщения: ' . $e->getMessage();
