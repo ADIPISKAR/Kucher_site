@@ -15,7 +15,7 @@ class TgApi {
     private $MadelineProto;
 
     public function __construct() {
-        
+
         $settings = [
             'app_info' => [
                 'api_id' => '23309931', // Замените на ваш API ID
@@ -23,21 +23,12 @@ class TgApi {
             ]
         ];
 
-        $this->MadelineProto = new \danog\MadelineProto\API('session.madeline', $settings);
+        $this->MadelineProto = new \danog\MadelineProto\API('/var/www/html/Kucher_site/src/session/session.madeline', $settings);
         $this->MadelineProto->start();
 
         $me = $this->MadelineProto->getSelf();
         $this->MadelineProto->logger($me);
 
         $this->MadelineProto->echo('OK, done!');
-    }
-
-    public function authorize() {
-        try {
-            // $this->MadelineProto->start();
-            echo "Авторизация прошла успешно!";
-        } catch (Exception $e) {
-            echo "Ошибка авторизации: " . $e->getMessage();
-        }
     }
 }
