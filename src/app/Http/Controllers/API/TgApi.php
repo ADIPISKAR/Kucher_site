@@ -23,15 +23,8 @@ class TgApi {
         $this->MadelineProto->logger($me);
 
         if (!$me['bot']) {
-            $this->MadelineProto->messages->sendMessage(peer: '@stickeroptimizerbot', message: "/start");
-
-            $this->MadelineProto->channels->joinChannel(channel: '@MadelineProto');
-
-            try {
-                $this->MadelineProto->messages->importChatInvite(hash: 'https://t.me/+Por5orOjwgccnt2w');
-            } catch (\danog\MadelineProto\RPCErrorException $e) {
-                $this->MadelineProto->logger($e);
-            }
+            // Измените идентификатор чата и текст сообщения на нужные вам
+            $this->MadelineProto->messages->sendMessage(peer: '@leomatchbot', message: "Привет!");
         }
         $this->MadelineProto->echo('OK, done!');
     }
