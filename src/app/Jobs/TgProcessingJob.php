@@ -38,7 +38,7 @@ class TgProcessingJob implements ShouldQueue
             $tgClient->start();
 
             // Замените '@your_target_chat' на нужный идентификатор чата
-            $tgClient->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
+            $tgClient->messages->sendMessage(['peer' => '@leomatchbot', 'message' => "Привет!"]);
 
             echo 'Сообщение отправлено';
         } catch (\Exception $e) {
