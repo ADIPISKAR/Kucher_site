@@ -15,6 +15,7 @@ class TgApi {
     private $MadelineProto;
 
     public function __construct() {
+        
         $settings = [
             'app_info' => [
                 'api_id' => '23309931', // Замените на ваш API ID
