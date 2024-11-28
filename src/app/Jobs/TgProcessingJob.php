@@ -39,8 +39,8 @@ class TgProcessingJob implements ShouldQueue
             }
             include __DIR__ . '/madeline.php';
 
-            // Создайте экземпляр API без дополнительных настроек
-            $tgClient = new \danog\MadelineProto\API('session.madeline');
+
+            $tgClient = new TgApi();
             $tgClient->start();
 
             $tgClient->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
