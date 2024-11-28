@@ -10,9 +10,10 @@ class TgApi {
     private $MadelineProto;
 
     public function __construct($settings = []) {
-        $this->MadelineProto = new API('session.madeline', $settings);
+        $settingsObject = new MadelineSettings($settings);
+        $this->MadelineProto = new API('session.madeline', $settingsObject);
     }
-
+    
     public function authorize() {
         try {
             $this->MadelineProto->start();
