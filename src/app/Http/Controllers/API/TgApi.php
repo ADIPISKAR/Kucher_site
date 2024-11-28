@@ -10,13 +10,13 @@ if (!file_exists('madeline.php')) {
 include 'madeline.php';
 
 use danog\MadelineProto\API;
-use danog\MadelineProto\Settings\Instance;
+use danog\MadelineProto\Settings\Bot;
 
 class TgApi {
     private $MadelineProto;
 
     public function __construct() {
-        $settings = new Instance([
+        $settings = new Bot([
             'app_info' => [
                 'api_id' => '23309931', // Ваш API ID
                 'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf' // Ваш API hash
