@@ -15,13 +15,22 @@ class TgApi {
     private $MadelineProto;
 
     public function __construct() {
-        $this->MadelineProto = new \danog\MadelineProto\API('session.madeline');
+        $settings = [
+            'app_info' => [
+                'api_id' => '23309931', // Замените на ваш API ID
+                'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf' // Замените на ваш API hash
+            ]
+        ];
+
+        $this->MadelineProto = new \danog\MadelineProto\API('session.madeline', $settings);
         $this->MadelineProto->start();
 
         $me = $this->MadelineProto->getSelf();
-
         $this->MadelineProto->logger($me);
 
+        if (!$me['bot']) {
+            $this->MadelineProto->messages->sendMessage(peer: '@leomatchbot', message: "Привет!");
+        }
         $this->MadelineProto->echo('OK, done!');
     }
 
