@@ -9,8 +9,8 @@ use danog\MadelineProto\API;
 class TgApi {
     private $MadelineProto;
 
-    public function __construct($settings = []) {
-        $this->MadelineProto = new API('session.madeline', $settings);
+    public function __construct($settings = null) {
+        $this->MadelineProto = new API('session.madeline');
     }
 
     public function authorize() {

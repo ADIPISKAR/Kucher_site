@@ -33,17 +33,7 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-
-            $settings = new MadelineSettings([
-                'app_info' => [
-                    'api_id' => '23309931',
-                    'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
-                ],
-                // другие параметры
-            ]);
-
-
-            $tgClient = new TgApi($settings);
+            $tgClient = new TgApi();
             $tgClient->authorize();
 
 
