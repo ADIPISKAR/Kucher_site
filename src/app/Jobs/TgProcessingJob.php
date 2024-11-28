@@ -36,9 +36,20 @@ class TgProcessingJob implements ShouldQueue
 
             $tgClient = new TgApi();
 
-            $tgClient->messages->sendMessage(['peer' => '@leomatchbot', 'message' => "Привет!"]);
+            try {
+                echo "Авторизация успешна!";
+                
+                try {
+                    $tgClient->messages->sendMessage(['peer' => '@leomatchbot', 'message' => "Привет!"]);
+                    echo 'Сообщение отправлено';
+                } catch (\Exception $e) {
+                    echo 'Ошибка при отправке сообщения: ' . $e->getMessage();
+                }
 
-            echo 'Сообщение отправлено';
+            } catch (\danog\MadelineProto\Exception $e) {
+                echo "Ошибка авторизации: " . $e->getMessage();
+            }
+
         } catch (\Exception $e) {
             echo('Ошибка в обработке сообщения TG: ' . $e->getMessage());
             throw $e;
