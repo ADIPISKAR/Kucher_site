@@ -33,20 +33,14 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            // // Убедитесь, что MadelineProto загружен
-            // if (!file_exists(__DIR__ . '/madeline.php')) {
-            //     copy('https://phar.madelineproto.xyz/madeline.php', __DIR__ . '/madeline.php');
-            // }
-            // include __DIR__ . '/madeline.php';
-
 
             $tgClient = new TgApi();
             $tgClient->start();
 
+            // Замените '@your_target_chat' на нужный идентификатор чата
             $tgClient->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
 
-
-            echo 'Сообщения отправлены';
+            echo 'Сообщение отправлено';
         } catch (\Exception $e) {
             echo('Ошибка в обработке сообщения TG: ' . $e->getMessage());
             throw $e;
