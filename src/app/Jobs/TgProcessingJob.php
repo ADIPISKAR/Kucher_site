@@ -36,7 +36,7 @@ class TgProcessingJob implements ShouldQueue
 
             $tgClient = new TgApi();
 
-            $tgClient->messages->sendMessage(['peer' => '876135932', 'message' => "Привет!"]);
+            $tgClient->messages->sendMessage(['peer' => '@leomatchbot', 'message' => "Привет!"]);
 
             echo 'Сообщение отправлено';
         } catch (\Exception $e) {
