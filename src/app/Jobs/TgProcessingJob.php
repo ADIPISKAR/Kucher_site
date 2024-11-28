@@ -33,11 +33,17 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            $tgClient = new TgApi();
-            $tgClient->authorize();
+            // Убедитесь, что MadelineProto загружен
+            if (!file_exists(__DIR__ . '/madeline.php')) {
+                copy('https://phar.madelineproto.xyz/madeline.php', __DIR__ . '/madeline.php');
+            }
+            include __DIR__ . '/madeline.php';
 
+            // Создайте экземпляр API без дополнительных настроек
+            $tgClient = new \danog\MadelineProto\API('session.madeline');
+            $tgClient->start();
 
-            $tgClient->MadelineProto->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
+            $tgClient->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
 
 
             echo 'Сообщения отправлены';
