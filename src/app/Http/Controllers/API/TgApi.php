@@ -10,20 +10,17 @@ if (!file_exists('madeline.php')) {
 include 'madeline.php';
 
 use danog\MadelineProto\API;
-use danog\MadelineProto\Settings\AppInfo;
-use danog\MadelineProto\Settings\API as APISettings;
+use danog\MadelineProto\Settings;
 
 class TgApi {
     private $MadelineProto;
 
     public function __construct() {
-        $appInfo = new AppInfo([
-            'api_id' => '23309931', // Ваш API ID
-            'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf' // Ваш API hash
-        ]);
-
-        $settings = new APISettings([
-            'app_info' => $appInfo
+        $settings = new Settings([
+            'app_info' => [
+                'api_id' => '23309931', // Ваш API ID
+                'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf' // Ваш API hash
+            ]
         ]);
 
         $this->MadelineProto = new \danog\MadelineProto\API('/var/www/html/Kucher_site/src/session/session.madeline', $settings);
