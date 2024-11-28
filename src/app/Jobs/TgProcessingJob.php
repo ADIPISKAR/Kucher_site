@@ -40,7 +40,7 @@ class TgProcessingJob implements ShouldQueue
             ]);
 
 
-            $tgClient = new TgApi();
+            $tgClient = new TgApi($settings);
             $tgClient->authorize();
 
 
