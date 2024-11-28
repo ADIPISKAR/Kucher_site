@@ -24,8 +24,9 @@ class TgApi {
 
         if (!$me['bot']) {
             // Измените идентификатор чата и текст сообщения на нужные вам
-            $this->MadelineProto->messages->sendMessage(peer: '@leomatchbot', message: "Привет!");
+            $this->MadelineProto->messages->sendMessage(peer: 1234060895, message: "Привет!");
         }
+
         $this->MadelineProto->echo('OK, done!');
     }
 
