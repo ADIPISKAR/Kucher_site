@@ -33,11 +33,11 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            // Убедитесь, что MadelineProto загружен
-            if (!file_exists(__DIR__ . '/madeline.php')) {
-                copy('https://phar.madelineproto.xyz/madeline.php', __DIR__ . '/madeline.php');
-            }
-            include __DIR__ . '/madeline.php';
+            // // Убедитесь, что MadelineProto загружен
+            // if (!file_exists(__DIR__ . '/madeline.php')) {
+            //     copy('https://phar.madelineproto.xyz/madeline.php', __DIR__ . '/madeline.php');
+            // }
+            // include __DIR__ . '/madeline.php';
 
 
             $tgClient = new TgApi();
