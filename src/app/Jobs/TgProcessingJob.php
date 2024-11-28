@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Http\Controllers\API\TgApi;
 use App\Models\WordsExclusion;
-use danog\MadelineProto\Settings;
+use danog\MadelineProto\Settings\App as MadelineSettings;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -34,11 +34,9 @@ class TgProcessingJob implements ShouldQueue
     {
         try {
 
-            $settings = new Settings([
-                'app_info' => [
-                    'api_id' => '23309931',
-                    'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
-                ],
+            $settings = new MadelineSettings([
+                'api_id' => '23309931',
+                'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
                 // другие параметры
             ]);
 
