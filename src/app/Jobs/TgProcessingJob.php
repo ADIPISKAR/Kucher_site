@@ -36,7 +36,7 @@ class TgProcessingJob implements ShouldQueue
             $tgClient->authorize();
 
 
-            $tgClient->MadelineProto->messages->sendMessage(['peer' => $this->access_token, 'message' => "Привет!"]);
+            $tgClient->MadelineProto->messages->sendMessage(['peer' => $chatId, 'message' => "Привет!"]);
 
 
             echo 'Сообщения отправлены';
