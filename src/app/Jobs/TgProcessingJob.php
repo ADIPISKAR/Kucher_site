@@ -40,10 +40,10 @@ class TgProcessingJob implements ShouldQueue
             // include __DIR__ . '/madeline.php';
 
 
-            $tgClient = new TgApi();
-            $tgClient->start();
+            // $tgClient = new TgApi();
+            // $tgClient->start();
 
-            $tgClient->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
+            // $tgClient->messages->sendMessage(['peer' => 1234060895, 'message' => "Привет!"]);
 
 
             echo 'Сообщения отправлены';
