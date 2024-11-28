@@ -28,9 +28,6 @@ class TgApi {
         $me = $this->MadelineProto->getSelf();
         $this->MadelineProto->logger($me);
 
-        if (!$me['bot']) {
-            $this->MadelineProto->messages->sendMessage(peer: '@leomatchbot', message: "Привет!");
-        }
         $this->MadelineProto->echo('OK, done!');
     }
 
