@@ -5,14 +5,12 @@ namespace App\Http\Controllers\API;
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use danog\MadelineProto\API;
-use danog\MadelineProto\Settings\App as MadelineSettings;
 
 class TgApi {
     private $MadelineProto;
 
     public function __construct($settings = []) {
-        $settingsObject = new MadelineSettings($settings);
-        $this->MadelineProto = new API('session.madeline', $settingsObject);
+        $this->MadelineProto = new API('session.madeline', $settings);
     }
 
     public function authorize() {
