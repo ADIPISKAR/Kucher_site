@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-if (!file_exists('/var/www/html/Kucher_site/src/madeline.php')) {
-    copy('https://phar.madelineproto.xyz/madeline.php', '/var/www/html/Kucher_site/src/madeline.php');
-}
-include '/var/www/html/Kucher_site/src/madeline.php';
-
 use danog\MadelineProto\API;
 
 class TgApi {
