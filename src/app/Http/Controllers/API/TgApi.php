@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers\API;
 
 if (!file_exists('/var/www/html/Kucher_site/src/madeline.php')) {
