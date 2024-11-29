@@ -13,6 +13,11 @@ class TgApi {
     private $MadelineProto;
 
     public function __construct() {
+        if (!file_exists(__DIR__ . '/madeline.php')) {
+            copy('https://phar.madelineproto.xyz/madeline.php', __DIR__ . '/madeline.php');
+        }
+        include __DIR__ . '/madeline.php';
+        
         $settings = [
             'app_info' => [
                 'api_id' => '23309931',  // Замените на ваш реальный API ID
