@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\API;
 
 use danog\MadelineProto\API;
+use danog\MadelineProto\Settings;
 
 class TgApi {
     private $MadelineProto;
 
     public function __construct() {
-        $settings = [
-            'api_id' => '23309931',  // Замените на ваш реальный API ID
-            'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  // Замените на ваш реальный API Hash
-        ];
+        $settings = new Settings([
+            'app_info' => [
+                'api_id' => '23309931',  // Замените на ваш реальный API ID
+                'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  // Замените на ваш реальный API Hash
+            ],
+        ]);
 
         // Инициализация API
         $this->MadelineProto = new API('session.madeline', $settings);
