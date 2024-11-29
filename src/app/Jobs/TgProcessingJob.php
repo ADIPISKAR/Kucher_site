@@ -39,8 +39,8 @@ class TgProcessingJob implements ShouldQueue
         // Иначе создать новую сессию
             $madeline = new API([
                 'app_info' => [
-                    'api_id' => env('TELEGRAM_API_ID'),
-                    'api_hash' => env('TELEGRAM_API_HASH'),
+                    'api_id' => env('23309931'),
+                    'api_hash' => env('a1b55a9fa815fa90cf817b0390a430cf'),
                 ]
             ]);
 
@@ -51,7 +51,7 @@ class TgProcessingJob implements ShouldQueue
             $madeline->serialize();
 
             // Начать авторизацию по номеру мобильного телефона
-            $madeline->phone_login( env('TELEGRAM_PHONE') );
+            $madeline->phone_login( env('89518456649') );
             // Запросить код с помощью консоли
             $code = readline('Enter the code you received: ');
             $madeline->complete_phone_login($code);
