@@ -15,8 +15,8 @@ class TgApi {
     public function __construct() {
         $settings = [
             'app_info' => [
-                'api_id' => '233023429931',  // Замените на ваш реальный API ID
-                'api_hash' => 'a1b5sdfgfsda9fa815fa90cf817b0390a430cf',  // Замените на ваш реальный API Hash
+                'api_id' => '23309931',  // Замените на ваш реальный API ID
+                'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  // Замените на ваш реальный API Hash
             ],
             'logger' => [
                 'logger' => 0, // 0 для отключения логирования, 1 для логирования в файл, 2 для логирования в консоль
