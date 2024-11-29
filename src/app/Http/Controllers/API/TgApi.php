@@ -17,21 +17,10 @@ class TgApi {
             copy('https://phar.madelineproto.xyz/madeline.php', __DIR__ . '/madeline.php');
         }
         include __DIR__ . '/madeline.php';
-        
+
         $settings = [
-            'app_info' => [
-                'api_id' => '23309931',  // Замените на ваш реальный API ID
-                'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  // Замените на ваш реальный API Hash
-            ],
-            'logger' => [
-                'logger' => 0, // 0 для отключения логирования, 1 для логирования в файл, 2 для логирования в консоль
-            ],
-            'serialization' => [
-                'serialization_interval' => 300, // Интервал в секундах для автоматической сериализации сессии
-            ],
-            'updates' => [
-                'handle_updates' => false, // Установите true, если хотите обрабатывать обновления вручную
-            ],
+            'api_id' => '23309931',  // Замените на ваш реальный API ID
+            'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  // Замените на ваш реальный API Hash
         ];
 
         // Инициализация API
