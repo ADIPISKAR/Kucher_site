@@ -8,13 +8,13 @@ if (!file_exists('/var/www/html/Kucher_site/src/madeline.php')) {
 include '/var/www/html/Kucher_site/src/madeline.php';
 
 use danog\MadelineProto\API;
-// use danog\MadelineProto\Settings\Bot;
+
 
 class TgApi {
     private $MadelineProto;
 
     public function __construct() {
-        $this->MadelineProto = new \danog\MadelineProto\API('/var/www/html/Kucher_site/src/session/session.madeline');
+        $this->MadelineProto = new \danog\MadelineProto\API('/var/www/html/Kucher_site/src/session/');
         $this->MadelineProto->start();
 
         $me = $this->MadelineProto->getSelf();
