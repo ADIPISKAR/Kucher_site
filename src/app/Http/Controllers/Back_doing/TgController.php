@@ -35,6 +35,6 @@ class TgController extends Controller
 
         dispatch(new TgProcessingJob($access_token, $messagesArray));
 
-        return redirect()->back()->with('message', 'Процесс запущен.');
+        // return redirect()->back()->with('message', 'Процесс запущен.');
     }
 }
