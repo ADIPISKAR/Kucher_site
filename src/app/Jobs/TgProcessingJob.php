@@ -51,13 +51,13 @@ class TgProcessingJob implements ShouldQueue
             $madeline->serialize();
 
             // Начать авторизацию по номеру мобильного телефона
-            $madeline->phone_login( env('89518456649') );
+            $madeline->phone_login( env('+79518456649') );
             // Запросить код с помощью консоли
             $code = readline('Enter the code you received: ');
             $madeline->complete_phone_login($code);
         }
 
-        $messages = $madeline->messages->getHistory(['peer' => '@ANY_CHANNEL_ID', 'offset_id' => 0, 'offset_date' => 0, 'add_offset' => 0, 'limit' => 10, 'max_id' => 0, 'min_id' => 0, 'hash' => 0, ]);
+        $messages = $madeline->messages->getHistory(['peer' => '@leomatchbot', 'offset_id' => 0, 'offset_date' => 0, 'add_offset' => 0, 'limit' => 10, 'max_id' => 0, 'min_id' => 0, 'hash' => 0, ]);
 
         foreach($messages['messages'] as $msg) {
             dump($msg);
