@@ -23,18 +23,17 @@ class TgProcessingJob implements ShouldQueue
     protected $messagesArray;
     protected $sessionFile;
 
-    // Добавим API ID и API Hash как параметры конструктора
-    protected $apiId = '23309931';
-    protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
+    // Убираем жесткое присваивание значений
+    protected $apiId;
+    protected $apiHash;
 
+    // Передаем API ID и API Hash в конструктор
     public function __construct($apiId, $apiHash)
     {
+        $this->apiId = $apiId; // Получаем API ID
+        $this->apiHash = $apiHash; // Получаем API Hash
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline'); // Путь к файлу сессии
-
-        // Инициализация API ID и API Hash
-        $this->apiId = $apiId;
-        $this->apiHash = $apiHash;
     }
 
     public function handle()
@@ -47,7 +46,13 @@ class TgProcessingJob implements ShouldQueue
 
             // Создаем или используем существующую сессию
             $MadelineProto = new API($this->sessionFile, $settings);
-            $MadelineProto->start();
+
+            // Проверяем, существует ли файл сессии, иначе создаем новый
+            if (!file_exists($this->sessionFile)) {
+                $MadelineProto->start();
+            } else {
+                $MadelineProto->resume();
+            }
 
             // Получаем информацию о текущем пользователе
             $me = $MadelineProto->getSelf();
