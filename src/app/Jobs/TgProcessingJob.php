@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\WordsExclusion;
 use danog\MadelineProto\API;
+use danog\MadelineProto\Settings;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -36,17 +37,18 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            // Массив настроек для MadelineProto
+            // Создание объекта настроек для MadelineProto
             $settings = new Settings([
                 'app_info' => [
-                    'api_id' => 'your_api_id',
-                    'api_hash' => 'your_api_hash',
+                    'api_id' => $this->apiId,
+                    'api_hash' => $this->apiHash,
                 ],
             ]);
 
+            // Создание объекта MadelineProto с правильным параметром
             $MadelineProto = new API($this->sessionFile, $settings);
 
-            // Проверяем, существует ли файл сессии, иначе создаем новый
+            // Проверка существования файла сессии
             if (!file_exists($this->sessionFile)) {
                 echo "Файл сессии не найден, создаем новый...\n";
                 $MadelineProto->start(); // Начинаем процесс авторизации
