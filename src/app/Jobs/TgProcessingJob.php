@@ -11,8 +11,10 @@ use Illuminate\Queue\SerializesModels;
 use App\Http\Controllers\API\TgApi;
 use App\Models\WordsExclusion;
 use danog\MadelineProto\Settings\Instance as MadelineSettings;
+
 use \danog\MadelineProto\API;
 use \danog\MadelineProto\Settings;
+use \danog\MadelineProto\Tools;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -47,7 +49,7 @@ class TgProcessingJob implements ShouldQueue
             }
         }
         catch(Exception $e){
-            echo e->getMessage();
+            echo $e->getMessage();
         }
 
 
