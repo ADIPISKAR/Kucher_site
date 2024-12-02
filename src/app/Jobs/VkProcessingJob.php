@@ -62,6 +62,7 @@ class VkProcessingJob implements ShouldQueue
                     }
                 }
     
+                
                 if ($skipCurrentIteration) {
                     continue;
                 }
