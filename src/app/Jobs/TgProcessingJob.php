@@ -44,7 +44,6 @@ class TgProcessingJob implements ShouldQueue
                 ],
             ]);
 
-            // Создаем объект API с указанными настройками
             $MadelineProto = new API($this->sessionFile, $settings);
 
             // Проверяем, существует ли файл сессии, иначе создаем новый
