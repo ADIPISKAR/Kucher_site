@@ -31,12 +31,22 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            $settings = (new \danog\MadelineProto\Settings\AppInfo)
-                ->setApiId(23309931)
-                ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf');
+            // $settings = (new \danog\MadelineProto\Settings\AppInfo)
+            //     ->setApiId(23309931)
+            //     ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf');
 
 
-            // Создаем объект API с путем к сессии и настройками
+            $settings = new Settings([
+                'app_info' => [
+                    'api_id' => '23309931',  // Ваш api_id
+                    'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  // Ваш api_hash
+                ],
+                'connections' => [
+                    'proxy' => null,
+                    'use_ipv6' => false,
+                ],
+            ]);
+            
             $MadelineProto = new API($this->sessionFile, $settings);
 
             if (!file_exists($this->sessionFile)) {
