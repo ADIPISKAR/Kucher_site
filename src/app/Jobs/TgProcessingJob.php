@@ -33,8 +33,8 @@ class TgProcessingJob implements ShouldQueue
         try {
             // Создаем объект AppInfo и задаем api_id и api_hash
             $appInfo = (new AppInfo)
-                ->setApiId(124) // Ваш API ID
-                ->setApiHash('xx'); // Ваш API Hash
+                ->setApiId(23309931) // Ваш API ID
+                ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); // Ваш API Hash
 
             // Создаем объект Settings с AppInfo
             $settings = new Settings([
