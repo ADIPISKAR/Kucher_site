@@ -27,14 +27,14 @@ class TgProcessingJob implements ShouldQueue
     protected $apiId = 23309931;
     protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
 
-    public function __construct($access_token, $messagesArray, $apiId, $apiHash)
+    public function __construct($apiId, $apiHash)
     {
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline'); // Путь к файлу сессии
 
-        
+
         // Инициализация API ID и API Hash
         $this->apiId = $apiId;
         $this->apiHash = $apiHash;
