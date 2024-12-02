@@ -23,13 +23,8 @@ class TgProcessingJob implements ShouldQueue
     protected $messagesArray;
     protected $sessionFile;
 
-    protected $apiId = '23309931';
-    protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
-
-    public function __construct($apiId, $apiHash)
+    public function __construct()
     {
-        $this->apiId = $apiId;
-        $this->apiHash = $apiHash;
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline');
     }
@@ -37,7 +32,6 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            // Создание объекта настроек для MadelineProto
             $settings = new Settings([
                 'app_info' => [
                     'api_id' => '23309931',
