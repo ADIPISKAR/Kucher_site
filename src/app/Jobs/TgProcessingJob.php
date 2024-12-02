@@ -35,31 +35,39 @@ class TgProcessingJob implements ShouldQueue
         $this->sessionFile = env('TELEGRAM_SESSION_FILE');
     }
 
-    public function handle() {
-
+    public function handle()
+    {
         try {
             // Подключение к API Telegram
             $MadelineProto = new API($this->sessionFile);
             $MadelineProto->start();
-
+    
             // Проверка, если пользователь не авторизован
             if (!$MadelineProto->isLoggedIn()) {
-                echo "Необходимо пройти авторизацию...";
-                // Авторизация через телефон
-                $MadelineProto->phoneLogin('+79518456649');
-                $code = readline("Введите код из SMS: ");
+                echo "Необходимо пройти авторизацию...\n";
+    
+                // Авторизация через телефон (вводите свой номер)
+                $MadelineProto->phoneLogin('+79518456649'); // Ваш номер телефона
+                echo "Введите код из SMS: ";
+                $code = readline();
                 $MadelineProto->completePhoneLogin($code);
+    
+                echo "Авторизация прошла успешно!\n";
+            } else {
+                echo "Вы уже авторизованы!\n";
             }
-
+    
             // Отправка сообщения
             $MadelineProto->messages->sendMessage([
-                'peer' => '1234060895',
+                'peer' => '1234060895', // Замените на правильный ID чата
                 'message' => "Привет!",
             ]);
-
-            echo "Сообщение отправлено!";
+    
+            echo "Сообщение отправлено!\n";
         } catch (\Exception $e) {
-            echo "Ошибка при отправке сообщения: " . $e->getMessage();
+            echo "Ошибка при отправке сообщения: " . $e->getMessage() . "\n";
+            echo "Трассировка стека: " . $e->getTraceAsString() . "\n";
         }
     }
+    
 }
