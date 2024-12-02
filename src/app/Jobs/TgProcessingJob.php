@@ -10,11 +10,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Http\Controllers\API\TgApi;
 use App\Models\WordsExclusion;
-use danog\MadelineProto\Settings\Instance as MadelineSettings;
+use danog\madeline\Settings\Instance as MadelineSettings;
 
-use \danog\MadelineProto\API;
-use \danog\MadelineProto\Settings;
-use \danog\MadelineProto\Tools;
+use \danog\madeline\API;
+use \danog\madeline\Settings;
+use \danog\madeline\Tools;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -48,11 +48,22 @@ class TgProcessingJob implements ShouldQueue
                 ]));
             }
         
-            // Попытка входа
-            $madeline->phone_login('+79518456649');
-            // Запросить код с помощью консоли
-            $code = readline('Enter the code you received: ');
-            $madeline->complete_phone_login($code);
+            $madeline->start();
+
+            // Вход в аккаунт через телефон, если еще не авторизованы
+            if (!$madeline->isLoggedIn()) {
+                echo "Необходимо пройти авторизацию...";
+                // Ваш телефон для получения кода
+                $madeline->phoneLogin($phoneNumber);
+                // Получаем код из SMS
+                $code = readline("Введите код из SMS: ");
+                $madeline->completePhoneLogin($code);
+            }
+            // // Попытка входа
+            // $madeline->phone_login('+79518456649');
+            // // Запросить код с помощью консоли
+            // $code = readline('Enter the code you received: ');
+            // $madeline->complete_phone_login($code);
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
