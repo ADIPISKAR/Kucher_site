@@ -36,39 +36,25 @@ class TgProcessingJob implements ShouldQueue
 
     public function handle() {
 
-        try{
-            if(file_exists( env('TELEGRAM_SESSION_FILE') ) ) {
-                $madeline = new API( env('TELEGRAM_SESSION_FILE') );
+        try {
+            if (file_exists(env('TELEGRAM_SESSION_FILE'))) {
+                $madeline = new API(env('TELEGRAM_SESSION_FILE'));
             } else {
                 $madeline = new API(env('TELEGRAM_SESSION_FILE'), new Settings([
                     'app_info' => [
-                        'api_id' => '23309931',
+                        'api_id' => '23309931',  
                         'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
                     ]
                 ]));
             }
+        
+            // Попытка входа
+            $madeline->phone_login('+79518456649');
+            // Запросить код с помощью консоли
+            $code = readline('Enter the code you received: ');
+            $madeline->complete_phone_login($code);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
-        catch(Exception $e){
-            echo $e->getMessage();
-        }
-
-
-            // // Задать имя сессии
-            // $madeline->session = env('TELEGRAM_SESSION_FILE');
-
-            // // Принудительно сохранить сессию
-            // $madeline->serialize();
-
-            // // Начать авторизацию по номеру мобильного телефона
-            $result = $madeline->phone_login('+79518456649');
-            dump($result);
-        }
-
-        // $messages = $madeline->messages->getHistory(['peer' => '@leomatchbot', 'offset_id' => 0, 'offset_date' => 0, 'add_offset' => 0, 'limit' => 10, 'max_id' => 0, 'min_id' => 0, 'hash' => 0, ]);
-
-        // foreach($messages['messages'] as $msg) {
-        //     dump($msg);
-        // }
-
+    }
 }
-
