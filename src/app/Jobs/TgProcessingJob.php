@@ -38,30 +38,30 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            // Подключение к API Telegram
-            $MadelineProto = new API($this->sessionFile);
-            $MadelineProto->start();
-    
-            // Проверка, если пользователь не авторизован
-            if (!$MadelineProto->isLoggedIn()) {
-                echo "Необходимо пройти авторизацию...\n";
-    
-                // Авторизация через телефон (вводите свой номер)
-                $MadelineProto->phoneLogin('+79518456649'); // Ваш номер телефона
-                echo "Введите код из SMS: ";
-                $code = readline();
-                $MadelineProto->completePhoneLogin($code);
-    
-                echo "Авторизация прошла успешно!\n";
-            } else {
-                echo "Вы уже авторизованы!\n";
+            if (!file_exists('madeline.php')) {
+                copy('https://phar.madelineproto.xyz/madeline.php', 'madeline.php');
             }
-    
-            // Отправка сообщения
-            $MadelineProto->messages->sendMessage([
-                'peer' => '1234060895', // Замените на правильный ID чата
-                'message' => "Привет!",
-            ]);
+            include 'madeline.php';
+            
+            $MadelineProto = new \danog\MadelineProto\API('session.madeline');
+            $MadelineProto->start();
+            
+            $me = $MadelineProto->getSelf();
+            
+            $MadelineProto->logger($me);
+            
+            if (!$me['bot']) {
+                $MadelineProto->messages->sendMessage(peer: '@stickeroptimizerbot', message: "/start");
+            
+                $MadelineProto->channels->joinChannel(channel: '@MadelineProto');
+            
+                try {
+                    $MadelineProto->messages->importChatInvite(hash: 'https://t.me/+Por5orOjwgccnt2w');
+                } catch (\danog\MadelineProto\RPCErrorException $e) {
+                    $MadelineProto->logger($e);
+                }
+            }
+            $MadelineProto->echo('OK, done!');
     
             echo 'Сообщение отправлено!\n';
         } catch (\Exception $e) {
