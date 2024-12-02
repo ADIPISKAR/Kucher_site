@@ -12,6 +12,7 @@ use App\Http\Controllers\API\TgApi;
 use App\Models\WordsExclusion;
 use danog\MadelineProto\Settings\Instance as MadelineSettings;
 use \danog\MadelineProto\API;
+use \danog\MadelineProto\Settings;
 
 class TgProcessingJob implements ShouldQueue
 {
