@@ -22,8 +22,8 @@ class TgProcessingJob implements ShouldQueue
     protected $messagesArray;
     protected $sessionFile;
 
-    protected $apiId;
-    protected $apiHash;
+    protected $apiId = '23309931';
+    protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
 
     public function __construct($apiId, $apiHash)
     {
@@ -37,10 +37,12 @@ class TgProcessingJob implements ShouldQueue
     {
         try {
             // Массив настроек для MadelineProto
-            $settings = [
-                'api_id' => $this->apiId,
-                'api_hash' => $this->apiHash,
-            ];
+            $settings = new Settings([
+                'app_info' => [
+                    'api_id' => 'your_api_id',
+                    'api_hash' => 'your_api_hash',
+                ],
+            ]);
 
             // Создаем объект API с указанными настройками
             $MadelineProto = new API($this->sessionFile, $settings);
