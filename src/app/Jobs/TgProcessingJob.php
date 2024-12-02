@@ -37,6 +37,10 @@ class TgProcessingJob implements ShouldQueue
                     'api_id' => '23309931',
                     'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
                 ],
+                'connections' => [
+                    'proxy' => null,
+                    'use_ipv6' => false,
+                ],
             ]);
 
             // Создание объекта MadelineProto с правильным параметром
