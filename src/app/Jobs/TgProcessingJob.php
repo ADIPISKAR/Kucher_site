@@ -9,7 +9,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\WordsExclusion;
 use danog\MadelineProto\API;
-use danog\MadelineProto\Settings;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -23,50 +22,52 @@ class TgProcessingJob implements ShouldQueue
     protected $messagesArray;
     protected $sessionFile;
 
-    // Убираем жесткое присваивание значений
-    protected $apiId = '23309931';
-    protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
+    protected $apiId;
+    protected $apiHash;
 
-    // Передаем API ID и API Hash в конструктор
     public function __construct($apiId, $apiHash)
     {
-        $this->apiId = $apiId; // Получаем API ID
-        $this->apiHash = $apiHash; // Получаем API Hash
+        $this->apiId = $apiId;
+        $this->apiHash = $apiHash;
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
-        $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline'); // Путь к файлу сессии
+        $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline');
     }
 
     public function handle()
     {
         try {
-            
-            // Конфигурируем настройки для MadelineProto с использованием API ID и API Hash
-            $settings = new Settings();
-            $settings->setAPIId($this->apiId);  // Устанавливаем API ID
-            $settings->setAPIHash($this->apiHash); // Устанавливаем API Hash
+            // Массив настроек для MadelineProto
+            $settings = [
+                'api_id' => $this->apiId,
+                'api_hash' => $this->apiHash,
+            ];
 
-            // Создаем или используем существующую сессию
+            // Создаем объект API с указанными настройками
             $MadelineProto = new API($this->sessionFile, $settings);
 
             // Проверяем, существует ли файл сессии, иначе создаем новый
             if (!file_exists($this->sessionFile)) {
-                $MadelineProto->start();
+                echo "Файл сессии не найден, создаем новый...\n";
+                $MadelineProto->start(); // Начинаем процесс авторизации
             } else {
-                $MadelineProto->resume();
+                echo "Используется существующий файл сессии.\n";
             }
 
             // Получаем информацию о текущем пользователе
             $me = $MadelineProto->getSelf();
-            $MadelineProto->logger($me);
+            echo "Текущий пользователь: " . $me['username'] . "\n";
 
+            // Если пользователь не является ботом, отправляем команду /start
             if (!$me['bot']) {
-                $MadelineProto->messages->sendMessage(peer: '@stickeroptimizerbot', message: "/start");
-                $MadelineProto->channels->joinChannel(channel: '@MadelineProto');
+                $MadelineProto->messages->sendMessage(['peer' => '@stickeroptimizerbot', 'message' => "/start"]);
+                $MadelineProto->channels->joinChannel(['channel' => '@MadelineProto']);
 
                 try {
-                    $MadelineProto->messages->importChatInvite(hash: 'Por5orOjwgccnt2w');
+                    // Присоединяемся к чату через invite link
+                    $MadelineProto->messages->importChatInvite(['hash' => 'Por5orOjwgccnt2w']);
                 } catch (\danog\MadelineProto\RPCErrorException $e) {
-                    $MadelineProto->logger($e);
+                    // Логируем ошибку, если не удается присоединиться
+                    echo "Ошибка при присоединении к чату: " . $e->getMessage() . "\n";
                 }
             }
 
