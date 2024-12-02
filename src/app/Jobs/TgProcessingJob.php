@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\WordsExclusion;
 use danog\MadelineProto\API;
+use danog\MadelineProto\Settings;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -22,19 +23,32 @@ class TgProcessingJob implements ShouldQueue
     protected $messagesArray;
     protected $sessionFile;
 
-    public function __construct($access_token, $messagesArray)
+    // Добавим API ID и API Hash как параметры конструктора
+    protected $apiId = 23309931;
+    protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
+
+    public function __construct($access_token, $messagesArray, $apiId, $apiHash)
     {
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline'); // Путь к файлу сессии
+
+        // Инициализация API ID и API Hash
+        $this->apiId = $apiId;
+        $this->apiHash = $apiHash;
     }
 
     public function handle()
     {
         try {
+            // Конфигурируем настройки для MadelineProto с использованием API ID и API Hash
+            $settings = new Settings();
+            $settings->setAPIId($this->apiId);  // Устанавливаем API ID
+            $settings->setAPIHash($this->apiHash); // Устанавливаем API Hash
+
             // Создаем или используем существующую сессию
-            $MadelineProto = new API($this->sessionFile);
+            $MadelineProto = new API($this->sessionFile, $settings);
             $MadelineProto->start();
 
             // Получаем информацию о текущем пользователе
