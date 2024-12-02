@@ -39,6 +39,7 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
+            
             // Конфигурируем настройки для MadelineProto с использованием API ID и API Hash
             $settings = new Settings();
             $settings->setAPIId($this->apiId);  // Устанавливаем API ID
