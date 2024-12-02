@@ -43,7 +43,6 @@ class TgProcessingJob implements ShouldQueue
                 ],
             ]);
 
-            // Создание объекта MadelineProto с правильным параметром
             $MadelineProto = new API($this->sessionFile, $settings);
 
             // Проверка существования файла сессии
