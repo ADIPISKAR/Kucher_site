@@ -12,7 +12,7 @@ use App\Http\Controllers\API\TgApi;
 use App\Models\WordsExclusion;
 use danog\madeline\Settings\Instance as MadelineSettings;
 
-use \danog\madeline\API;
+use danog\MadelineProto\API;
 use \danog\madeline\Settings;
 use \danog\madeline\Tools;
 
