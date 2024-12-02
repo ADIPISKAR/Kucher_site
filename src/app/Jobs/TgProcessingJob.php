@@ -38,7 +38,7 @@ class TgProcessingJob implements ShouldQueue
             $madeline = new API( env('TELEGRAM_SESSION_FILE') );
         } else {
         // Иначе создать новую сессию
-            $madeline = new API([
+            $madeline = new API('TELEGRAM_SESSION_FILE', [
                 'app_info' => [
                     'api_id' => env('23309931'),
                     'api_hash' => env('a1b55a9fa815fa90cf817b0390a430cf'),
