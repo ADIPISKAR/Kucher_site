@@ -32,7 +32,6 @@ class TgProcessingJob implements ShouldQueue
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline'); // Путь к файлу сессии
 
-
         // Инициализация API ID и API Hash
         $this->apiId = $apiId;
         $this->apiHash = $apiHash;
