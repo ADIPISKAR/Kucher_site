@@ -26,13 +26,14 @@ class TgProcessingJob implements ShouldQueue
     protected $access_token;
     protected $excludedWords;
     protected $messagesArray;
+    protected $sessionFile; // Добавьте это свойство
 
     public function __construct($access_token, $messagesArray)
     {
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
-        $this->sessionFile = env('TELEGRAM_SESSION_FILE');
+        $this->sessionFile = env('TELEGRAM_SESSION_FILE'); // Теперь будет работать корректно
     }
 
     public function handle()
@@ -43,7 +44,8 @@ class TgProcessingJob implements ShouldQueue
             }
             include 'madeline.php';
             
-            $MadelineProto = new \danog\MadelineProto\API('session.madeline');
+            // Используйте $this->sessionFile в логике, если необходимо
+            $MadelineProto = new \danog\MadelineProto\API($this->sessionFile ?: 'session.madeline');
             $MadelineProto->start();
             
             $me = $MadelineProto->getSelf();
@@ -69,5 +71,4 @@ class TgProcessingJob implements ShouldQueue
             echo "Трассировка стека: " . $e->getTraceAsString() . "\n";
         }
     }
-    
 }
