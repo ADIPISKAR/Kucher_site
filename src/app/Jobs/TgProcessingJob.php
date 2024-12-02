@@ -37,9 +37,8 @@ class TgProcessingJob implements ShouldQueue
 
 
             // Создаем объект API с путем к сессии и настройками
-            $MadelineProto = new API('/var/www/html/Kucher_site/src/session.madeline', $settings);
+            $MadelineProto = new API($this->sessionFile, $settings);
 
-            // Проверка существования файла сессии
             if (!file_exists($this->sessionFile)) {
                 echo "Файл сессии не найден, создаем новый...\n";
                 $MadelineProto->start(); // Начинаем процесс авторизации
