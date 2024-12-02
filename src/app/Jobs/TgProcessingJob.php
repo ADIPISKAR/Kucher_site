@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\WordsExclusion;
 use danog\MadelineProto\API;
+use danog\MadelineProto\Settings\AppInfo;
 use danog\MadelineProto\Settings;
 
 class TgProcessingJob implements ShouldQueue
@@ -18,9 +19,7 @@ class TgProcessingJob implements ShouldQueue
     public $tries = 6;
     public $timeout = 2700;
 
-    protected $access_token;
     protected $excludedWords;
-    protected $messagesArray;
     protected $sessionFile;
 
     public function __construct()
@@ -32,17 +31,21 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
+            // Создаем объект AppInfo и задаем api_id и api_hash
+            $appInfo = (new AppInfo)
+                ->setApiId(124) // Ваш API ID
+                ->setApiHash('xx'); // Ваш API Hash
+
+            // Создаем объект Settings с AppInfo
             $settings = new Settings([
-                'app_info' => [
-                    'api_id' => '23309931',
-                    'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
-                ],
+                'app_info' => $appInfo,
                 'connections' => [
                     'proxy' => null,
                     'use_ipv6' => false,
                 ],
             ]);
 
+            // Создаем объект API с путем к сессии и настройками
             $MadelineProto = new API($this->sessionFile, $settings);
 
             // Проверка существования файла сессии
@@ -72,6 +75,8 @@ class TgProcessingJob implements ShouldQueue
             }
 
             echo "Сессия успешно обработана.\n";
+        } catch (\danog\MadelineProto\Exception $e) {
+            echo "MadelineProto Ошибка: " . $e->getMessage() . "\n";
         } catch (\Exception $e) {
             echo "Ошибка: " . $e->getMessage() . "\n";
         }
