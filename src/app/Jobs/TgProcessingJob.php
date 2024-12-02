@@ -32,40 +32,34 @@ class TgProcessingJob implements ShouldQueue
         $this->access_token = $access_token;
         $this->messagesArray = $messagesArray;
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
+        $this->sessionFile = env('TELEGRAM_SESSION_FILE');
     }
 
     public function handle() {
 
         try {
-            if (file_exists(env('TELEGRAM_SESSION_FILE'))) {
-                $madeline = new API(env('TELEGRAM_SESSION_FILE'));
-            } else {
-                $madeline = new API(env('TELEGRAM_SESSION_FILE'), new Settings([
-                    'app_info' => [
-                        'api_id' => '23309931',  
-                        'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',
-                    ]
-                ]));
-            }
-        
-            $madeline->start();
+            // Подключение к API Telegram
+            $MadelineProto = new API($this->sessionFile);
+            $MadelineProto->start();
 
-            // Вход в аккаунт через телефон, если еще не авторизованы
-            if (!$madeline->isLoggedIn()) {
+            // Проверка, если пользователь не авторизован
+            if (!$MadelineProto->isLoggedIn()) {
                 echo "Необходимо пройти авторизацию...";
-                // Ваш телефон для получения кода
-                $madeline->phoneLogin($phoneNumber);
-                // Получаем код из SMS
+                // Авторизация через телефон
+                $MadelineProto->phoneLogin('+79518456649');
                 $code = readline("Введите код из SMS: ");
-                $madeline->completePhoneLogin($code);
+                $MadelineProto->completePhoneLogin($code);
             }
-            // // Попытка входа
-            // $madeline->phone_login('+79518456649');
-            // // Запросить код с помощью консоли
-            // $code = readline('Enter the code you received: ');
-            // $madeline->complete_phone_login($code);
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+
+            // Отправка сообщения
+            $MadelineProto->messages->sendMessage([
+                'peer' => '1234060895',
+                'message' => "Привет!",
+            ]);
+
+            echo "Сообщение отправлено!";
+        } catch (\Exception $e) {
+            echo "Ошибка при отправке сообщения: " . $e->getMessage();
         }
     }
 }
