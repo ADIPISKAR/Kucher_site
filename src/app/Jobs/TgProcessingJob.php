@@ -63,7 +63,7 @@ class TgProcessingJob implements ShouldQueue
                 'message' => "Привет!",
             ]);
     
-            echo "Сообщение отправлено!\n";
+            echo 'Сообщение отправлено!\n';
         } catch (\Exception $e) {
             echo "Ошибка при отправке сообщения: " . $e->getMessage() . "\n";
             echo "Трассировка стека: " . $e->getTraceAsString() . "\n";
