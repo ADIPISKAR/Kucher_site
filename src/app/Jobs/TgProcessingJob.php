@@ -24,7 +24,7 @@ class TgProcessingJob implements ShouldQueue
     protected $sessionFile;
 
     // Добавим API ID и API Hash как параметры конструктора
-    protected $apiId = 23309931;
+    protected $apiId = '23309931';
     protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
 
     public function __construct($apiId, $apiHash)
