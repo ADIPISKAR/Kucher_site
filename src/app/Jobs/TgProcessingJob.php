@@ -28,8 +28,8 @@ class TgProcessingJob implements ShouldQueue
 
     public function __construct($apiId, $apiHash)
     {
-        $this->apiId = $apiId;
-        $this->apiHash = $apiHash;
+        $this->apiId = '23309931';
+        $this->apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
         $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline');
     }
