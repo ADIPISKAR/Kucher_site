@@ -24,8 +24,8 @@ class TgProcessingJob implements ShouldQueue
     protected $sessionFile;
 
     // Убираем жесткое присваивание значений
-    protected $apiId;
-    protected $apiHash;
+    protected $apiId = '23309931';
+    protected $apiHash = 'a1b55a9fa815fa90cf817b0390a430cf';
 
     // Передаем API ID и API Hash в конструктор
     public function __construct($apiId, $apiHash)
