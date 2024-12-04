@@ -7,10 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\WordsExclusion;
 use danog\MadelineProto\API;
-use danog\MadelineProto\Settings\AppInfo;
 use danog\MadelineProto\Settings;
+use danog\MadelineProto\Settings\AppInfo;
 
 class TgProcessingJob implements ShouldQueue
 {
@@ -19,25 +18,37 @@ class TgProcessingJob implements ShouldQueue
     public $tries = 6;
     public $timeout = 2700;
 
-    protected $excludedWords;
     protected $sessionFile;
 
     public function __construct()
     {
-        $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
-        $this->sessionFile = env('TELEGRAM_SESSION_FILE');  // Указываем полный путь
+        $this->sessionFile = env('TELEGRAM_SESSION_FILE');  // Указываем путь к файлу сессии
     }
 
     public function handle()
     {
         try {
-            $settings = (new \danog\MadelineProto\Settings\AppInfo)
-                ->setApiId(23309931)
-                ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf');
-            
-            $MadelineProto = new \danog\MadelineProto\API('session.madeline', $settings);
+            // Создаем настройки для приложения
+            $appInfo = (new AppInfo)
+                ->setApiId(23309931)  // Ваш API ID
+                ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf');  // Ваш API Hash
 
-            $MadelineProto->start(); 
+            // Создаем настройки и добавляем настройки базы данных и загрузки, если необходимо
+            $settings = new Settings();
+            $settings->setAppInfo($appInfo);
+            // Пример настройки базы данных (если требуется)
+            // $settings->setDb((new \danog\MadelineProto\Settings\Database\Mysql)
+            //     ->setUri('tcp://localhost')
+            //     ->setPassword('pass')
+            // );
+
+            // Создаем экземпляр API и передаем настройки
+            $MadelineProto = new API($this->sessionFile, $settings);
+
+            // Запускаем процесс авторизации
+            $MadelineProto->start();
+
+            echo "Вход в Telegram выполнен успешно.\n";
 
         } catch (\Exception $e) {
             echo "Ошибка: " . $e->getMessage() . "\n";
