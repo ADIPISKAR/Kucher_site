@@ -47,7 +47,13 @@ class TgProcessingJob implements ShouldQueue
 
             if (!file_exists($this->sessionFile)) {
                 echo "Файл сессии не найден, создаем новый...\n";
-                $MadelineProto->start(); // Начинаем процесс авторизации
+                try {
+                    $MadelineProto->start(); 
+        
+                    echo "Новый файл сессии был успешно создан.\n";
+                } catch (\danog\MadelineProto\Exception $e) {
+                    echo "Ошибка при создании файла сессии: " . $e->getMessage() . "\n";
+                }
             } else {
                 echo "Используется существующий файл сессии.\n";
             }
