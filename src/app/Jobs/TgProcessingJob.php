@@ -31,33 +31,26 @@ class TgProcessingJob implements ShouldQueue
     public function handle()
     {
         try {
-            $settings = (new AppInfo)
+            $settings = (new \danog\MadelineProto\Settings\AppInfo)
                 ->setApiId(23309931)
                 ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf');
-
-
-            // $settings = new Settings([
-            //     'app_info' => [
-            //         'api_id' => '23309931',  
-            //         'api_hash' => 'a1b55a9fa815fa90cf817b0390a430cf',  
-            //     ],
-            //     'debug' => true, 
-            // ]);
             
-            $MadelineProto = new API('session.madeline', $settings);
+            $MadelineProto = new \danog\MadelineProto\API('session.madeline', $settings);
 
-            if (!file_exists($this->sessionFile)) {
-                echo "Файл сессии не найден, создаем новый...\n";
-                try {
-                    $MadelineProto->start(); 
+            $MadelineProto->start(); 
+
+            // if (!file_exists($this->sessionFile)) {
+            //     echo "Файл сессии не найден, создаем новый...\n";
+            //     try {
+            //         $MadelineProto->start(); 
         
-                    echo "Новый файл сессии был успешно создан.\n";
-                } catch (\danog\MadelineProto\Exception $e) {   
-                    echo "Ошибка при создании файла сессии: " . $e->getMessage() . "\n";
-                }
-            } else {
-                echo "Используется существующий файл сессии.\n";
-            }
+            //         echo "Новый файл сессии был успешно создан.\n";
+            //     } catch (\danog\MadelineProto\Exception $e) {   
+            //         echo "Ошибка при создании файла сессии: " . $e->getMessage() . "\n";
+            //     }
+            // } else {
+            //     echo "Используется существующий файл сессии.\n";
+            // }
 
             // Получаем информацию о текущем пользователе
             $me = $MadelineProto->getSelf();
