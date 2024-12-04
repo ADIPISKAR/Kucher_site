@@ -43,9 +43,9 @@ class TgProcessingJob implements ShouldQueue
             //     ],
             // ]);
             
-            $MadelineProto = new API($this->sessionFile, $settings);
+            $MadelineProto = new API('session.madeline', $settings);
 
-            if (!file_exists($this->sessionFile)) {
+            if (!file_exists('session.madeline')) {
                 echo "Файл сессии не найден, создаем новый...\n";
                 try {
                     $MadelineProto->start(); 
