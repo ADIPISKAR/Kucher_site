@@ -39,40 +39,6 @@ class TgProcessingJob implements ShouldQueue
 
             $MadelineProto->start(); 
 
-            // if (!file_exists($this->sessionFile)) {
-            //     echo "Файл сессии не найден, создаем новый...\n";
-            //     try {
-            //         $MadelineProto->start(); 
-        
-            //         echo "Новый файл сессии был успешно создан.\n";
-            //     } catch (\danog\MadelineProto\Exception $e) {   
-            //         echo "Ошибка при создании файла сессии: " . $e->getMessage() . "\n";
-            //     }
-            // } else {
-            //     echo "Используется существующий файл сессии.\n";
-            // }
-
-            // Получаем информацию о текущем пользователе
-            $me = $MadelineProto->getSelf();
-            echo "Текущий пользователь: " . $me['username'] . "\n";
-
-            // Если пользователь не является ботом, отправляем команду /start
-            if (!$me['bot']) {
-                $MadelineProto->messages->sendMessage(['peer' => '@stickeroptimizerbot', 'message' => "/start"]);
-                $MadelineProto->channels->joinChannel(['channel' => '@MadelineProto']);
-
-                try {
-                    // Присоединяемся к чату через invite link
-                    $MadelineProto->messages->importChatInvite(['hash' => 'Por5orOjwgccnt2w']);
-                } catch (\danog\MadelineProto\RPCErrorException $e) {
-                    // Логируем ошибку, если не удается присоединиться
-                    echo "Ошибка при присоединении к чату: " . $e->getMessage() . "\n";
-                }
-            }
-
-            echo "Сессия успешно обработана.\n";
-        } catch (\danog\MadelineProto\Exception $e) {
-            echo "MadelineProto Ошибка: " . $e->getMessage() . "\n";
         } catch (\Exception $e) {
             echo "Ошибка: " . $e->getMessage() . "\n";
         }
