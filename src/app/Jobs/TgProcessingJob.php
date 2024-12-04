@@ -51,7 +51,7 @@ class TgProcessingJob implements ShouldQueue
                     $MadelineProto->start(); 
         
                     echo "Новый файл сессии был успешно создан.\n";
-                } catch (\danog\MadelineProto\Exception $e) {
+                } catch (\danog\MadelineProto\Exception $e) {   
                     echo "Ошибка при создании файла сессии: " . $e->getMessage() . "\n";
                 }
             } else {
