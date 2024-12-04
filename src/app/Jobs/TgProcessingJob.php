@@ -25,7 +25,7 @@ class TgProcessingJob implements ShouldQueue
     public function __construct()
     {
         $this->excludedWords = WordsExclusion::pluck('word')->filter()->toArray();
-        $this->sessionFile = env('TELEGRAM_SESSION_FILE');  // Указываем полный путь
+        $this->sessionFile = env('TELEGRAM_SESSION_FILE', 'session.madeline');  // Указываем полный путь
     }
 
     public function handle()
