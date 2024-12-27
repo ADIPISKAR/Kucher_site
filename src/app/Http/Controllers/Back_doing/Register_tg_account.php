@@ -13,27 +13,51 @@ use danog\MadelineProto\Settings\AppInfo;
 
 class Register_tg_account extends Controller
 {
-    public function register_number(Request $request){
+    public function register_number(Request $request)
+{
+    $phone = $request->input('phone');
+    $sessionFile = env('TELEGRAM_SESSION_FILE');
 
-        $phone = $request->input('phone');
-        $sessionFile = env('TELEGRAM_SESSION_FILE');
-
-        $appInfo = (new AppInfo)
+    $appInfo = (new AppInfo)
         ->setApiId(23309931)
         ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
 
-        $settings = new Settings();
-        $settings->setAppInfo($appInfo);
+    $settings = new Settings();
+    $settings->setAppInfo($appInfo);
 
-        $MadelineProto = new API($sessionFile, $settings);
+    $MadelineProto = new API($sessionFile, $settings);
 
-        $MadelineProto->phoneLogin($phone);
+    $MadelineProto->phoneLogin($phone);
+
+    // Сохраняем путь к сессионному файлу
+    session(['telegram_session' => $sessionFile]);
+
+    return redirect()->route('next_step');
+}
+
+public function next_step_number(Request $request)
+{
+    $code = $request->input('code');
+
+    // Восстанавливаем MadelineProto из сессии
+    $sessionFile = session('telegram_session');
+
+    if (!$sessionFile) {
+        return redirect()->route('register')->withErrors('Сессия Telegram не найдена');
     }
 
-    public function next_step_number(Request $request){
+    $appInfo = (new AppInfo)
+        ->setApiId(23309931)
+        ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
 
-        $code = $request->input('code');
+    $settings = new Settings();
+    $settings->setAppInfo($appInfo);
 
-        $authorization = $MadelineProto->completePhoneLogin($code);
+    $MadelineProto = new API($sessionFile, $settings);
+
+    // Завершаем авторизацию
+    $authorization = $MadelineProto->completePhoneLogin($code);
+
+    return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
     }
 }
