@@ -27,7 +27,7 @@
                         <p style="overflow: hidden; width: 450px; text-overflow: ellipsis;">{{ $account->Hash }}</p>
                     </div>
 
-                    <form action="{{ secure_url('Auth_tg', $account->id) }}" method="POST">
+                    <form action="{{ secure_url('auth_tg')}}" method="POST">
                         @csrf
                         @method('Auth_tg')
                         
