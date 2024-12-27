@@ -14,50 +14,55 @@ use danog\MadelineProto\Settings\AppInfo;
 class Register_tg_account extends Controller
 {
     public function register_number(Request $request)
-{
-    $phone = $request->input('phone');
-    $sessionFile = env('TELEGRAM_SESSION_FILE');
+    {
+        $phone = $request->input('phone');
+        $sessionFile = env('TELEGRAM_SESSION_FILE');
 
-    $appInfo = (new AppInfo)
-        ->setApiId(23309931)
-        ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
+        $appInfo = (new AppInfo)
+            ->setApiId(23309931)
+            ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
 
-    $settings = new Settings();
-    $settings->setAppInfo($appInfo);
+        $settings = new Settings();
+        $settings->setAppInfo($appInfo);
 
-    $MadelineProto = new API($sessionFile, $settings);
+        $MadelineProto = new API($sessionFile, $settings);
 
-    $MadelineProto->phoneLogin($phone);
+        $MadelineProto->phoneLogin($phone);
 
-    // Сохраняем путь к сессионному файлу
-    session(['telegram_session' => $sessionFile]);
+        // Сохраняем путь к сессионному файлу
+        session(['telegram_session' => $sessionFile]);
 
-    return redirect()->route('next_step');
-}
-
-public function next_step_number(Request $request)
-{
-    $code = $request->input('code');
-
-    // Восстанавливаем MadelineProto из сессии
-    $sessionFile = session('telegram_session');
-
-    if (!$sessionFile) {
-        return redirect()->route('register')->withErrors('Сессия Telegram не найдена');
+        return redirect()->route('next_step');
     }
 
-    $appInfo = (new AppInfo)
-        ->setApiId(23309931)
-        ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
+    public function next_step_number(Request $request)
+    {
+        $code = $request->input('code');
 
-    $settings = new Settings();
-    $settings->setAppInfo($appInfo);
+        // Восстанавливаем MadelineProto из сессии
+        $sessionFile = session('telegram_session');
 
-    $MadelineProto = new API($sessionFile, $settings);
+        if (!$sessionFile) {
+            return redirect()->route('register')->withErrors('Сессия Telegram не найдена');
+        }
 
-    // Завершаем авторизацию
-    $authorization = $MadelineProto->completePhoneLogin($code);
+        $appInfo = (new AppInfo)
+            ->setApiId(23309931)
+            ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
 
-    return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
+        $settings = new Settings();
+        $settings->setAppInfo($appInfo);
+
+        $MadelineProto = new API($sessionFile, $settings);
+
+        // Завершаем авторизацию
+        $authorization = $MadelineProto->completePhoneLogin($code);
+
+        $MadelineProto->messages->sendMessage([
+            'peer' => '@leomatchbot',     // ID чата или @username
+            'message' => "Приветики!", // Сообщение
+        ]);
+
+        return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
     }
 }
