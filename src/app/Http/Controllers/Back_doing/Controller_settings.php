@@ -69,14 +69,6 @@ class Controller_settings extends Controller
     }
 
     public function auth_tg(){
-
-
-
-
-        // $MadelineProto->start();
-
         return view('Doing.Auth_tg');
     }
-
-
 }
