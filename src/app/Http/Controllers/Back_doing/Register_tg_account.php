@@ -63,12 +63,12 @@ class Register_tg_account extends Controller
             }
             $authorization = $MadelineProto->complete2falogin($password);
         }
-        
+
         $MadelineProto->messages->sendMessage([
             'peer' => '@leomatchbot',     // ID чата или @username
             'message' => "Приветики!", // Сообщение
         ]);
 
-        return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
+        // return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
     }
 }
