@@ -12,7 +12,7 @@
                 <input placeholder="895..." class="form-input" name="phone" autofocus>
             </div>
 
-            <button type="submit" class="w-100 btn btn-primary form-button" onclick="showSecondForm()">Отправить</button>
+            <button type="submit" class="w-100 btn btn-primary form-button">Отправить</button>
         </form>
 
         <!-- Вторая форма (скрытая) -->
@@ -37,11 +37,10 @@
 
 
 
-<script>
-    @if(isset($isSecondFormVisible) && $isSecondFormVisible)
-        <script>
-            document.getElementById('form1').style.display = 'none';
-            document.getElementById('form2').style.display = 'block';
-        </script>
-    @endif
-</script>
+
+@if(isset($isSecondFormVisible))
+    <script>
+        document.getElementById('form1').style.display = 'none';
+        document.getElementById('form2').style.display = 'block';
+    </script>
+@endif
