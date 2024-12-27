@@ -235,6 +235,16 @@ p {
     font-weight: 300;
 }
 
-.main-right-block{
-    /* background-color: red; */
+.button-delete{
+    background-color: hsl(130, 69%, 48%) !important;
+    color: hsl(130, 60%, 40%) !important;
+    border: none !important;
+    border-radius: 24px !important;
+    padding: 14px;
+    height: max-content;
+    background-color: #2D303E;
+    color: white;
+    font-size: 12px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
 }

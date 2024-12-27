@@ -31,6 +31,7 @@
                         @csrf
                         @method('DELETE')
 
+                        <button type="submit" class="btn btn-primary button-delete">Авторизоваться</button>
                         <button type="submit" class="btn btn-primary button-delete">Удалить</button>
                     </form>
 

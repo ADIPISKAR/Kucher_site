@@ -22,30 +22,21 @@ class TgProcessingJob implements ShouldQueue
 
     public function __construct()
     {
-        $this->sessionFile = env('TELEGRAM_SESSION_FILE');  // Указываем путь к файлу сессии
+        $this->sessionFile = env('TELEGRAM_SESSION_FILE');
     }
 
     public function handle()
     {
         try {
-            // Создаем настройки для приложения
             $appInfo = (new AppInfo)
-                ->setApiId(23309931)  // Ваш API ID
-                ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf');  // Ваш API Hash
+                ->setApiId(23309931)
+                ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
 
-            // Создаем настройки и добавляем настройки базы данных и загрузки, если необходимо
             $settings = new Settings();
             $settings->setAppInfo($appInfo);
-            // Пример настройки базы данных (если требуется)
-            // $settings->setDb((new \danog\MadelineProto\Settings\Database\Mysql)
-            //     ->setUri('tcp://localhost')
-            //     ->setPassword('pass')
-            // );
 
-            // Создаем экземпляр API и передаем настройки
             $MadelineProto = new API($this->sessionFile, $settings);
 
-            // Запускаем процесс авторизации
             $MadelineProto->start();
 
             echo "Вход в Telegram выполнен успешно.\n";
