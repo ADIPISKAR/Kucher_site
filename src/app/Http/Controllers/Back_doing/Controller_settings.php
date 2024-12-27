@@ -68,5 +68,10 @@ class Controller_settings extends Controller
          return redirect()->back()->with('success', 'Аккаунт успешно создан!');
     }
 
+    public function auth_tg(Request $request){
+        // 
+        return view('Doing.Auth_tg');
+    }
+
 
 }

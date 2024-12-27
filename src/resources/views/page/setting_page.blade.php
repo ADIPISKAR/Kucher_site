@@ -27,13 +27,18 @@
                         <p style="overflow: hidden; width: 450px; text-overflow: ellipsis;">{{ $account->Hash }}</p>
                     </div>
 
-                    <form action="{{ secure_url('destroy_user', $account->id) }}" method="POST">
+                    <form action="{{ secure_url('auth_tg', $account->id) }}" method="POST">
                         @csrf
-                        @method('DELETE')
+                        @method('auth_tg')
                         
                         @if(strpos($account->Hash, 'vk') === false)
                             <button type="submit" class="btn btn-primary button-auth">Авторизоваться</button>
                         @endif
+                    </form>
+
+                    <form action="{{ secure_url('destroy_user', $account->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
                         <button type="submit" class="btn btn-primary button-delete">Удалить</button>
                     </form>
 
