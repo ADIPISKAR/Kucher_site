@@ -38,6 +38,7 @@ class Register_tg_account extends Controller
     public function next_step_number(Request $request)
     {
         $code = $request->input('code');
+        $password = $request->input('password');
 
         // Восстанавливаем MadelineProto из сессии
         $sessionFile = session('telegram_session');
@@ -56,13 +57,20 @@ class Register_tg_account extends Controller
         $MadelineProto = new API($sessionFile, $settings);
 
         // Завершаем авторизацию
-        $authorization = $MadelineProto->completePhoneLogin($code);
+
+
+        if ($authorization['_'] === 'account.password') {
+            $authorization = $MadelineProto->complete2falogin(Tools::readLine($password));
+        }
+        else{
+            $authorization = $MadelineProto->completePhoneLogin($code);
+        }
 
         $MadelineProto->messages->sendMessage([
             'peer' => '@leomatchbot',     // ID чата или @username
             'message' => "Приветики!", // Сообщение
         ]);
 
-        return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
+        // return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
     }
 }
