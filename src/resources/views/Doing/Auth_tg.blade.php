@@ -14,7 +14,7 @@
         </form>
 
         <!-- Вторая форма (скрытая) -->
-        <form id="form2" action="{{ secure_url('next_step') }}" method="POST" style="display: none;">
+        <form id="form2" action="{{ secure_url('next_step_number') }}" method="POST" style="display: none;">
             @csrf
             <div class="mb-3">
                 <p class="text-white">Введите код подтверждения</p>

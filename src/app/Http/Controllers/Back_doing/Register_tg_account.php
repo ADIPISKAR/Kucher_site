@@ -30,7 +30,7 @@ class Register_tg_account extends Controller
         $MadelineProto->phoneLogin($phone);
     }
 
-    public function number_cod(Request $request){
+    public function next_step_number(Request $request){
 
         $code = $request->input('code');
 
