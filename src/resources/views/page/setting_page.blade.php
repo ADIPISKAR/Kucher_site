@@ -27,9 +27,9 @@
                         <p style="overflow: hidden; width: 450px; text-overflow: ellipsis;">{{ $account->Hash }}</p>
                     </div>
 
-                    <form action="{{ secure_url('auth_tg', $account->id) }}" method="POST">
+                    <form action="{{ secure_url('Auth_tg', $account->id) }}" method="POST">
                         @csrf
-                        @method('auth_tg')
+                        @method('Auth_tg')
                         
                         @if(strpos($account->Hash, 'vk') === false)
                             <button type="submit" class="btn btn-primary button-auth">Авторизоваться</button>
