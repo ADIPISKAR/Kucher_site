@@ -38,10 +38,10 @@
 
 
 <script>
-    function showSecondForm() {
-        // Скрыть первую форму
-        document.getElementById('form1').style.display = 'none';
-        // Показать вторую форму
-        document.getElementById('form2').style.display = 'block';
-    }
+    @if(isset($isSecondFormVisible) && $isSecondFormVisible)
+        <script>
+            document.getElementById('form1').style.display = 'none';
+            document.getElementById('form2').style.display = 'block';
+        </script>
+    @endif
 </script>
