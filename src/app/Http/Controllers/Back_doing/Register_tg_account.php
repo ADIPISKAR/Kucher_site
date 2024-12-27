@@ -30,8 +30,6 @@ class Register_tg_account extends Controller
         $MadelineProto->phoneLogin($phone);
 
         session(['telegram_session' => $sessionFile]);
-
-        // return redirect()->route('next_step_number');
     }
 
 
@@ -40,7 +38,6 @@ class Register_tg_account extends Controller
         $code = $request->input('code');
         $password = $request->input('password');
 
-        // Восстанавливаем MadelineProto из сессии
         $sessionFile = session('telegram_session');
 
         if (!$sessionFile) {
@@ -56,9 +53,6 @@ class Register_tg_account extends Controller
 
         $MadelineProto = new API($sessionFile, $settings);
 
-        // Завершаем авторизацию
-
-
         if ($authorization['_'] === 'account.password') {
             $authorization = $MadelineProto->complete2falogin(Tools::readLine($password));
         }
@@ -71,6 +65,6 @@ class Register_tg_account extends Controller
             'message' => "Приветики!", // Сообщение
         ]);
 
-        // return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
+        return redirect()->route('success'); // Перенаправление на страницу успешной авторизации
     }
 }
