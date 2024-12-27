@@ -30,9 +30,11 @@
                     <form action="{{ secure_url('destroy_user', $account->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-
-                        <button type="submit" class="btn btn-primary button-delete">Авторизоваться</button>
-                        <button type="submit" class="btn btn-primary button-auth">Удалить</button>
+                        
+                        @if(strpos($account->Hash, 'vk') === false)
+                            <button type="submit" class="btn btn-primary button-auth">Авторизоваться</button>
+                        @endif
+                        <button type="submit" class="btn btn-primary button-delete">Удалить</button>
                     </form>
 
                 </div>
