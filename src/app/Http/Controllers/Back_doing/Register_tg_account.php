@@ -29,4 +29,11 @@ class Register_tg_account extends Controller
 
         $MadelineProto->phoneLogin($phone);
     }
+
+    public function number_cod(Request $request){
+
+        $code = $request->input('code');
+
+        $authorization = $MadelineProto->completePhoneLogin($code);
+    }
 }
