@@ -54,11 +54,13 @@ class Register_tg_account extends Controller
 
         $MadelineProto = new API($sessionFile, $settings);
 
-        if ($authorization['_'] === 'account.password') {
-            $authorization = $MadelineProto->complete2falogin(Tools::readLine($password));
-        }
-        else{
-            $authorization = $MadelineProto->completePhoneLogin($code);
+        $authorization = $MadelineProto->completePhoneLogin($code);
+
+        if (isset($authorization['_']) && $authorization['_'] === 'account.password') {
+            if (empty($password)) {
+                return redirect()->route('register')->withErrors('Необходимо указать пароль для двухфакторной авторизации');
+            }
+            $authorization = $MadelineProto->complete2falogin($password);
         }
 
         $MadelineProto->messages->sendMessage([
