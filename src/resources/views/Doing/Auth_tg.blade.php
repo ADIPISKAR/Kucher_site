@@ -8,7 +8,7 @@
             @csrf
             <div class="mb-3">
                 <p class="text-white">Введите номер телефона</p>
-                <input placeholder="Имя аккаунта" class="form-input" name="phone" autofocus>
+                <input placeholder="895432..." class="form-input" name="phone" autofocus>
             </div>
             <button type="button" class="w-100 btn btn-primary form-button" onclick="showSecondForm()">Отправить</button>
         </form>

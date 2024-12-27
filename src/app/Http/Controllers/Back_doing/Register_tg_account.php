@@ -29,12 +29,12 @@ class Register_tg_account extends Controller
 
         $MadelineProto->phoneLogin($phone);
 
-        // Сохраняем путь к сессионному файлу
         session(['telegram_session' => $sessionFile]);
 
         return redirect()->route('next_step');
     }
 
+    
     public function next_step_number(Request $request)
     {
         $code = $request->input('code');
