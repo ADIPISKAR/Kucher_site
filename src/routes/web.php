@@ -33,4 +33,4 @@ Route::post('/auth_tg', [App\Http\Controllers\Back_doing\Controller_settings::cl
 
 
 Route::post('register_number', [App\Http\Controllers\Back_doing\Register_tg_account::class, 'register_number'])->name('register_number');
-Route::post('next_step_number', [App\Http\Controllers\Back_doing\Register_tg_account::class, 'next_step_number'])->name('next_step_number');
+// Route::post('next_step_number', [App\Http\Controllers\Back_doing\Register_tg_account::class, 'next_step_number'])->name('next_step_number');
