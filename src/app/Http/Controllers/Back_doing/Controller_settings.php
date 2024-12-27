@@ -74,6 +74,7 @@ class Controller_settings extends Controller
     }
 
     public function auth_tg(){
+        $sessionFile = env('TELEGRAM_SESSION_FILE');
 
         $appInfo = (new AppInfo)
         ->setApiId(23309931)
@@ -82,7 +83,7 @@ class Controller_settings extends Controller
         $settings = new Settings();
         $settings->setAppInfo($appInfo);
 
-        $MadelineProto = new API($this->sessionFile, $settings);
+        $MadelineProto = new API($sessionFile, $settings);
 
         $MadelineProto->start();
 

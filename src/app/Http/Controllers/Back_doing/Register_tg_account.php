@@ -9,6 +9,6 @@ class Register_tg_account extends Controller
 {
     public function register_number(Request $request){
         $phone = $request->input('phone');
-        console.log($phone);
+        console.log($phone);    
     }
 }
