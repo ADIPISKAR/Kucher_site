@@ -31,10 +31,10 @@ class Register_tg_account extends Controller
 
         session(['telegram_session' => $sessionFile]);
 
-        return redirect()->route('next_step');
+        return redirect()->route('next_step_number');
     }
 
-    
+
     public function next_step_number(Request $request)
     {
         $code = $request->input('code');
