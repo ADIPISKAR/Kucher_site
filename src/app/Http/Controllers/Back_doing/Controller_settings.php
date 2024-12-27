@@ -69,7 +69,7 @@ class Controller_settings extends Controller
     }
 
     public function auth_tg(){
-        return view('Doing.AddList_message');
+        return view('Doing.Auth_tg');
     }
 
 

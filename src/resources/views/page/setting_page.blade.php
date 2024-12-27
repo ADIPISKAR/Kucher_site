@@ -29,7 +29,7 @@
 
                     <form action="{{ secure_url('auth_tg')}}" method="POST">
                         @csrf
-                        @method('Auth_tg')
+                        <!-- @method('Auth_tg') -->
                         
                         @if(strpos($account->Hash, 'vk') === false)
                             <button type="submit" class="btn btn-primary button-auth">Авторизоваться</button>
