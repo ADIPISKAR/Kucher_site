@@ -12,7 +12,7 @@
                 <input placeholder="895..." class="form-input" name="phone" autofocus>
             </div>
 
-            <button type="button" class="w-100 btn btn-primary form-button" onclick="showSecondForm()">Отправить</button>
+            <button type="submit" class="w-100 btn btn-primary form-button" onclick="showSecondForm()">Отправить</button>
         </form>
 
         <!-- Вторая форма (скрытая) -->
@@ -29,7 +29,7 @@
                 <input placeholder="Если есть" class="form-input" name="password" autofocus>
             </div>
 
-            <button type="button" class="w-100 btn btn-primary form-button">Отправить данные</button>
+            <button class="w-100 btn btn-primary form-button">Отправить данные</button>
         </form>
     </div>
 </div>
