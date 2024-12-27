@@ -235,7 +235,7 @@ p {
     font-weight: 300;
 }
 
-.button-delete{
+.button-auth{
     background-color: hsl(130, 69%, 48%) !important;
     color: hsl(130, 60%, 40%) !important;
     border: none !important;
