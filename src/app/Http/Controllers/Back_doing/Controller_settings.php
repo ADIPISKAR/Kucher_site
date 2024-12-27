@@ -7,11 +7,6 @@ use App\Models\AccountListing;
 use App\Models\Message;
 use App\Http\Controllers\Controller;
 
-
-use danog\MadelineProto\API;
-use danog\MadelineProto\Settings;
-use danog\MadelineProto\Settings\AppInfo;
-
 class Controller_settings extends Controller
 {
 

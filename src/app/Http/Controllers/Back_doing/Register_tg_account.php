@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Back_doing;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use danog\MadelineProto\API;
+use danog\MadelineProto\Settings;
+use danog\MadelineProto\Settings\AppInfo;
+
+
+
 class Register_tg_account extends Controller
 {
     public function register_number(Request $request){
