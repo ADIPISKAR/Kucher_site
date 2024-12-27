@@ -57,12 +57,13 @@ class Register_tg_account extends Controller
         $authorization = $MadelineProto->completePhoneLogin($code);
 
         if (isset($authorization['_']) && $authorization['_'] === 'account.password') {
+            // Обработка двухфакторной авторизации
             if (empty($password)) {
                 return redirect()->route('register')->withErrors('Необходимо указать пароль для двухфакторной авторизации');
             }
             $authorization = $MadelineProto->complete2falogin($password);
         }
-
+        
         $MadelineProto->messages->sendMessage([
             'peer' => '@leomatchbot',     // ID чата или @username
             'message' => "Приветики!", // Сообщение
