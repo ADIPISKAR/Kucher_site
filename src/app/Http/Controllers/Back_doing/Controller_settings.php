@@ -7,6 +7,11 @@ use App\Models\AccountListing;
 use App\Models\Message;
 use App\Http\Controllers\Controller;
 
+
+use danog\MadelineProto\API;
+use danog\MadelineProto\Settings;
+use danog\MadelineProto\Settings\AppInfo;
+
 class Controller_settings extends Controller
 {
 
@@ -69,6 +74,18 @@ class Controller_settings extends Controller
     }
 
     public function auth_tg(){
+
+        $appInfo = (new AppInfo)
+        ->setApiId(23309931)
+        ->setApiHash('a1b55a9fa815fa90cf817b0390a430cf'); 
+
+        $settings = new Settings();
+        $settings->setAppInfo($appInfo);
+
+        $MadelineProto = new API($this->sessionFile, $settings);
+
+        $MadelineProto->start();
+
         return view('Doing.Auth_tg');
     }
 

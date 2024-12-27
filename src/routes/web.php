@@ -30,3 +30,6 @@ Route::get('/add_message_route', [App\Http\Controllers\Back_doing\Controller_set
 Route::post('/vk_doing', [App\Http\Controllers\Back_doing\VkController::class, 'init'])->name('vk_doing');
 Route::post('/tg_doing', [App\Http\Controllers\Back_doing\TgController::class, 'init'])->name('tg_doing');
 Route::post('/auth_tg', [App\Http\Controllers\Back_doing\Controller_settings::class, 'auth_tg'])->name('auth_tg');
+
+
+Route::post('register_number', [App\Http\Controllers\Back_doing\Register_tg_account::class, 'register_number'])->name('register_number');
