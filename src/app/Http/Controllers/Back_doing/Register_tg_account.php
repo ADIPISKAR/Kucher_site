@@ -30,6 +30,7 @@ class Register_tg_account extends Controller
         $MadelineProto->phoneLogin($phone);
 
         session(['telegram_session' => $sessionFile]);
+        return view('Doing.Auth_tg');
     }
 
 
