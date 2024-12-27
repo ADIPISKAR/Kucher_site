@@ -31,7 +31,7 @@ class Register_tg_account extends Controller
 
         session(['telegram_session' => $sessionFile]);
 
-        return redirect()->route('next_step_number');
+        // return redirect()->route('next_step_number');
     }
 
 
