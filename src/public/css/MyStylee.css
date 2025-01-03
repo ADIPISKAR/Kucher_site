@@ -114,7 +114,7 @@ p {
     background-color: #fffaf000;
     padding: 8px;
     color: white;
-    font-weight: 600;
+    font-weight: 200;
     font-family: 'Montserrat', sans-serif !important;
     transition: all 1.0s ease-in-out;
     outline: none;
@@ -178,6 +178,10 @@ p {
 
 .form-button:focus{
     background-color: #2A2B4D !important;
+}
+
+.form-button:active{
+    transform: scale(0.95);
 }
 
 .form-button-second{
@@ -297,4 +301,18 @@ p {
     border-bottom: 2px solid #ABABAB;
     width: 100%;
     height: max-content;
+}
+
+.Second-text-link{
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 10;
+    color: #7177FF;
+    font-size: 12px;
+    margin: 0px;
+    text-decoration: none;
+}
+
+
+.Second-text-link:hover{
+    color: #7177FF !important;
 }
