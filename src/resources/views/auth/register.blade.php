@@ -8,7 +8,7 @@
                 <p class="text-center Main-Text">Регистрация в SendDive</p>
             </div>
 
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('create_account') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">
