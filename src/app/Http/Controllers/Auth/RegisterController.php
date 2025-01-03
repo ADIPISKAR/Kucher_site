@@ -72,15 +72,15 @@ class RegisterController extends Controller
      */
 
 
-    protected function create_account(array $data)
+    protected function create_account(Request $request)
     {
         $password = Str::random(12);
 
-        Mail::to($data['email'])->send(new UserCreatedMail($password));
+        Mail::to($request['email'])->send(new UserCreatedMail($password));
 
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name' => $request['name'],
+            'email' => $request['email'],
             'password' => Hash::make($password),
         ]);
     }
