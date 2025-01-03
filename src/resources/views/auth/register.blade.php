@@ -13,7 +13,7 @@
 
                 <div class="mb-3">
                     <p class="Second-text mb-1">ФИО</p>
-                    <input id="name" type="text" class="form-input" name="name" required autocomplete="off" autofocus>
+                    <input id="name" type="text" class="form-input" name="name"  required autocomplete="off" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
