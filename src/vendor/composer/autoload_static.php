@@ -1385,6 +1385,7 @@ class ComposerStaticInitf43c9279dde144eeb1fbec737c64836f
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Back_doing\\Controller_settings' => __DIR__ . '/../..' . '/app/Http/Controllers/Back_doing/Controller_settings.php',
+        'App\\Http\\Controllers\\Back_doing\\Register_tg_account' => __DIR__ . '/../..' . '/app/Http/Controllers/Back_doing/Register_tg_account.php',
         'App\\Http\\Controllers\\Back_doing\\TgController' => __DIR__ . '/../..' . '/app/Http/Controllers/Back_doing/TgController.php',
         'App\\Http\\Controllers\\Back_doing\\VkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Back_doing/VkController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',

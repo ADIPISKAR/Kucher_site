@@ -586,6 +586,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Back_doing\\Controller_settings' => $baseDir . '/app/Http/Controllers/Back_doing/Controller_settings.php',
+    'App\\Http\\Controllers\\Back_doing\\Register_tg_account' => $baseDir . '/app/Http/Controllers/Back_doing/Register_tg_account.php',
     'App\\Http\\Controllers\\Back_doing\\TgController' => $baseDir . '/app/Http/Controllers/Back_doing/TgController.php',
     'App\\Http\\Controllers\\Back_doing\\VkController' => $baseDir . '/app/Http/Controllers/Back_doing/VkController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
