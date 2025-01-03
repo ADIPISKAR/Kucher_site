@@ -13,7 +13,7 @@
 
                 <div class="mb-3">
                     <p class="Second-text mb-1">ФИО</p>
-                    <input id="name" type="text" class="form-input" name="name" value="{{ old('email') }}" required autocomplete="off" autofocus>
+                    <input id="name" type="text" class="form-input" name="name" required autocomplete="off" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <p class="Second-text mb-1">Телефон</p>
-                    <input id="tel" type="tel" class="form-input" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="8 (___) ___-__-__" autofocus>
+                    <input id="tel" type="tel" class="form-input" name="tel" required autocomplete="off" placeholder="8 (___) ___-__-__" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
