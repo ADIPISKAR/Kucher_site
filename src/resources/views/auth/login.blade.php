@@ -62,6 +62,7 @@
 
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-primary form-button-second mt-3">Регистрация</button>
+
                 </div>
             </form>
         </div>
