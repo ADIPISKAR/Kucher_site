@@ -42,7 +42,7 @@ class RegisterController extends Controller
 
 
     public function SignToRegist(){
-        return redirect()->route('auth.register');
+        return redirect()->route('register');
     }
     /**
      * Get a validator for an incoming registration request.
