@@ -18,7 +18,7 @@ class UserCreatedMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($password)
     {
         $this->password = $password;
     }
