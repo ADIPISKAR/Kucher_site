@@ -20,7 +20,7 @@ class UserCreatedMail extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->password = $password;
     }
 
     /**
@@ -35,6 +35,12 @@ class UserCreatedMail extends Mailable
         );
     }
 
+    public function build()
+    {
+        return $this
+            ->subject('Your Account Has Been Created') // Устанавливаем тему
+            ->text('emails.user_created_plain'); // Указываем путь к шаблону plain text
+    }
     /**
      * Get the message content definition.
      *
