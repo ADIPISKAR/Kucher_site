@@ -5,7 +5,7 @@
     <div class="row justify-content-center h-100 align-content-center">
         <div class="col-md-4">
 
-            <div class="d-flex flex-column align-items-left mb-3">
+            <div class="d-flex flex-column justify-content-start mb-3">
                 <p class="text-center Main-Text">Вход в SendDive</p>
             </div>
 
