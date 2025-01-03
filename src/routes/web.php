@@ -17,7 +17,7 @@ Auth::routes();
 
 
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'SignToRegist'])->name('register');
-Route::post('/create_account', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('create_account');
+Route::post('/create_account', [App\Http\Controllers\Auth\RegisterController::class, 'create_account'])->name('create_account');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/vk_page', [App\Http\Controllers\view\VkViewController::class, 'index'])->name('vk_page');

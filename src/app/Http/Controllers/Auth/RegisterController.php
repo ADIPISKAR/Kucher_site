@@ -72,7 +72,7 @@ class RegisterController extends Controller
      */
 
 
-    protected function create(array $data)
+    protected function create_account(array $data)
     {
         $password = Str::random(12);
 
