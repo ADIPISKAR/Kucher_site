@@ -116,11 +116,13 @@ p {
     color: white;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif !important;
+    transition: all 1.0s ease-in-out;
+    outline: none;
 }
 
 .form-input:focus {
-    border: 1px solid white; /* Измените цвет на желаемый */
-    outline: none; /* Убирает стандартную обводку */
+    border: 1px solid #7177FF;
+    box-shadow: 0 0 10px #7177FF;
 }
 
 .Main-Text{
@@ -167,6 +169,15 @@ p {
     font-size: 12px !important;
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 400 !important;
+    transition: all 0.5s ease-in-out !important;
+}
+
+.form-button:hover{
+    background-color: #2A2B4D !important;
+}
+
+.form-button:focus{
+    background-color: #2A2B4D !important;
 }
 
 .form-button-second{

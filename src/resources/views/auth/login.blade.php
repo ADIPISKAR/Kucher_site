@@ -13,7 +13,7 @@
 
                 <div class="mb-3">
                     <p class="Second-text mb-1">Логин или емейл</p>
-                    <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
                         <p class="Second-link-text mb-1">Восстановить доступ</p>
                     </div>
 
-                    <input id="password" type="password" class="form-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <input id="password" type="password" class="form-input @error('password') is-invalid @enderror" name="password" required autocomplete="off">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
