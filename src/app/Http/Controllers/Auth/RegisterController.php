@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserCreatedMail;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 
 class RegisterController extends Controller
