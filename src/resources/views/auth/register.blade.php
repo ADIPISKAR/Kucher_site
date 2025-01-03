@@ -19,7 +19,7 @@
 
                 <div class="mb-3">
                     <p class="Second-text mb-1">Емейл</p>
-                    <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
+                    <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" required autocomplete="off" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
