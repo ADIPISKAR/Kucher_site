@@ -40,6 +40,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    public function SignToRegist(){
+        return redirect()->route('register');
+    }
     /**
      * Get a validator for an incoming registration request.
      *

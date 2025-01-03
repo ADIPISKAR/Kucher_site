@@ -15,6 +15,9 @@ Route::get('/your-route', [App\Http\Controllers\Back_doing\VkController::class, 
 
 Auth::routes();
 
+
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'SignToRegist'])->name('register');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/vk_page', [App\Http\Controllers\view\VkViewController::class, 'index'])->name('vk_page');
 Route::get('/tg_page', [App\Http\Controllers\view\TgViewController::class, 'index'])->name('tg_page');
