@@ -54,6 +54,7 @@
 
         <div class="col-md-8 col-md-8 col-md-8 col-lg-4 col-xl-4 col-xxl-4">
             <form action="{{ route('register') }}" method="POST">
+                @csrf
                 <div class="d-flex flex-row align-items-baseline">
                     <div class="line"></div>
                     <p class="Second-text m-0 mx-2">или</p>
