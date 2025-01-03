@@ -46,12 +46,12 @@ class UserCreatedMail extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
-    {
-        return new Content(
-            view: 'emails.user_created',
-        );
-    }
+    // public function content()
+    // {
+    //     return new Content(
+    //         view: 'emails.user_created',
+    //     );
+    // }
 
     /**
      * Get the attachments for the message.
