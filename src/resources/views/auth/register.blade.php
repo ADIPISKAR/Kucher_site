@@ -14,6 +14,7 @@
                 <div class="mb-3">
                     <p class="Second-text mb-1">ФИО</p>
                     <input id="name" type="text" class="form-input" name="name" required autocomplete="off" autofocus>
+
                 </div>
 
                 <div class="mb-3">
@@ -33,9 +34,13 @@
 
 
                 <button class="w-100 btn btn-primary form-button">Зарегистрироваться</button>
+            </form>
+
         </div>
 
         <div class="col-md-8 col-md-8 col-md-8 col-lg-4 col-xl-4 col-xxl-4">
+            <form action="{{ route('register') }}" method="POST">
+                @csrf
                 <div class="d-flex flex-row align-items-baseline">
                     <div class="line"></div>
                     <p class="Second-text m-0 mx-2">или</p>
