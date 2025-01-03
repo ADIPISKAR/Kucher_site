@@ -14,11 +14,6 @@
                 <div class="mb-3">
                     <p class="Second-text mb-1">ФИО</p>
                     <input id="name" type="text" class="form-input" name="name" required autocomplete="off" autofocus>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
 
                 <div class="mb-3">
@@ -34,22 +29,13 @@
                 <div class="mb-3">
                     <p class="Second-text mb-1">Телефон</p>
                     <input id="tel" type="tel" class="form-input" name="tel" required autocomplete="off" placeholder="8 (___) ___-__-__" autofocus>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
 
 
                 <button class="w-100 btn btn-primary form-button">Зарегистрироваться</button>
-            </form>
-
         </div>
 
         <div class="col-md-8 col-md-8 col-md-8 col-lg-4 col-xl-4 col-xxl-4">
-            <form action="{{ route('register') }}" method="POST">
-                @csrf
                 <div class="d-flex flex-row align-items-baseline">
                     <div class="line"></div>
                     <p class="Second-text m-0 mx-2">или</p>
