@@ -13,6 +13,8 @@ class UserCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $password;
+
     /**
      * Create a new message instance.
      *
